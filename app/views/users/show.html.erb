@@ -1,0 +1,38 @@
+<div class="profile-wrapper">
+  <div class="profile-card">
+    <!-- ヘッダー -->
+    <div class="profile-header">
+      <h1>プロフィール</h1>
+    </div>
+
+    <!-- プロフィール内容 -->
+    <div class="profile-body">
+      <!-- アイコンと名前 -->
+      <div class="profile-info">
+        <div class="profile-icon">
+          <%= current_user.name.first(1) %>
+        </div>
+        <h2 class="profile-name"><%= current_user.name %></h2>
+      </div>
+
+      <!-- 自己紹介 -->
+      <div class="section">
+        <h3 class="section-title">自己紹介</h3>
+        <p class="section-text">
+          <%= current_user.introduction.presence || "よろしくお願いします" %>
+        </p>
+      </div>
+
+      <!-- スキル -->
+      <div class="section">
+        <h3 class="section-title">スキル</h3>
+        <div class="skills">
+          <% if current_user.skill.present? %>
+            <p class="section-text"><%= current_user.skill %></p>
+          <% else %>
+            <p class="text-gray-500">スキルが登録されていません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

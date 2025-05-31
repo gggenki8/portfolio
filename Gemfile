@@ -23,6 +23,9 @@ gem "devise"
 # 日本語
 gem 'rails-i18n'
 
+gem 'bigdecimal'
+gem 'mutex_m'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
