@@ -7,22 +7,42 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+
   </head>
-  <header class = "header">
-    <div class = "site-info">
-      <h2><%= link_to "Sukima Share", root_path, class: "site-name" %></h2>
-      <p class = "site-tagline" >隙間時間を有効に使おう</p>
-    </div>
-    <nav class = "auth-section">
-      <ul>
-        <li><%= link_to "レッスンを提供", root_path, class: "teach-btn" %></li>
-        <li><%= link_to "ログイン", '#', class: "login-btn" %></li>
-        <li><%= link_to "新規登録", '#', class: "signup-btn" %></li>
-      </ul>
-    </nav>
-  </header>
+
+  <body>
+    <header class = "header">
+      <div class = "site-info">
+        <h2><%= link_to "Sukima Share", root_path, class: "site-name" %></h2>
+        <p class = "site-tagline" >隙間時間を有効に使おう</p>
+      </div>
+      <nav class = "auth-section">
+        <ul>
+          <li><%= link_to "レッスンを提供", root_path, class: "teach-btn" %></li>
+          <li><%= link_to "ログイン", new_user_session_path, class: "login-btn" %></li>
+          <li><%= link_to "新規登録", new_user_registration_path, class: "signup-btn" %></li>
+          <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
+          <li><%= link_to "編集画面", edit_user_registration_path %></li>
+        </ul>
+      </nav>
+    </header>
+  </bpdy>
 
   <body>
     <%= yield %>
   </body>
+
+  <body>
+    <footer class = "footer">
+      <div class = "footer-coment">
+        <div class = "footer-title">
+          <h3>Sukima Share</h3>
+        </div>
+        <div class = "footer-discription">
+          隙間時間を活用してスキルを学び、教えるプラットフォーム。<br>
+          あなたの知識と経験を共有し、新しいスキルを身につけましょう。
+        </div>
+      </div>
+    </footer>
+  <body>
 </html>
