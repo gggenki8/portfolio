@@ -8,6 +8,19 @@
 
     <%= stylesheet_link_tag "application" %>
   </head>
+  <header class = "header">
+    <div class = "site-info">
+      <h2><%= link_to "Sukima Share", root_path, class: "site-name" %></h2>
+      <p class = "site-tagline" >隙間時間を有効に使おう</p>
+    </div>
+    <nav class = "auth-section">
+      <ul>
+        <li><%= link_to "レッスンを提供", root_path, class: "teach-btn" %></li>
+        <li><%= link_to "ログイン", '#', class: "login-btn" %></li>
+        <li><%= link_to "新規登録", '#', class: "signup-btn" %></li>
+      </ul>
+    </nav>
+  </header>
 
   <body>
     <%= yield %>

@@ -1,0 +1,43 @@
+<main class="main-content">
+  <section class="search-section">
+    <h2 class="search-title">あなたの隙間時間に最適なレッスンを見つけよう</h2>
+    
+    <%= form_tag "#", method: :get, class: "serch-main" do %>
+      <!-- フリーワード入力 -->
+      <%= text_field_tag :q, params[:q], placeholder: "学びたいスキルを検索(例:プログラミング、英会話、悩み相談)", class: "search-input" %>
+
+      <!-- カテゴリ検索 -->
+      <%= select_tag :category,
+            options_for_select([
+              ["カテゴリ検索",    ""],
+              ["語学",          "language"],
+              ["プログラミング", "programing"],
+              ["デザイン",       "design"],
+              ["ビジネス",       "business"],
+              ["音楽",           "music"],
+              ["料理",           "cooking"],
+              ["フィットネス",   "fitness"],
+              ["悩み事",         "worries"],
+              ["趣味、その他",   "hobby"]
+            ], params[:category]),
+            class: "category-select" %>
+
+      <!-- 時間選択 -->
+      <%= select_tag :duration,
+            options_for_select([
+              ["時間を選択",   ""],
+              ["15分",         "15"],
+              ["30分",         "30"],
+              ["45分",         "45"],
+              ["60分",         "60"],
+              ["90分",         "90"],
+              ["120分",        "120"],
+              ["120分以上",    "120"]
+            ], params[:duration]),
+            class: "time-select" %>
+
+      <!-- 検索ボタン -->
+      <%= submit_tag "🔍 検索", class: "search-btn" %>
+    <% end %>
+  </section>
+</main>
