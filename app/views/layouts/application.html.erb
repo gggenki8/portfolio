@@ -18,15 +18,23 @@
       </div>
       <nav class = "auth-section">
         <ul>
-          <li><%= link_to "レッスンを提供", root_path, class: "teach-btn" %></li>
-          <li><%= link_to "ログイン", new_user_session_path, class: "login-btn" %></li>
-          <li><%= link_to "新規登録", new_user_registration_path, class: "signup-btn" %></li>
-          <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
-          <li><%= link_to "編集画面", edit_user_registration_path %></li>
+          <% if user_signed_in? %>
+          <!-- ログイン時のメニュー -->
+            <li><%= link_to "レッスンを提供", root_path, class: "teach-btn" %></li>
+            <li><%= link_to "プロフィール", show_user_path, class: "profile-btn" %></li>
+            <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
+          <% else %>
+          <!-- 未ログイン時のメニュー -->
+            <li><%= link_to "レッスンを提供", new_user_session_path, class: "teach-btn" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class: "login-btn" %></li>
+            <li><%= link_to "新規登録", new_user_registration_path, class: "signup-btn" %></li>
+            <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
+            <li><%= link_to "編集画面", edit_user_registration_path %></li>
+          <% end %>
         </ul>
       </nav>
     </header>
-  </bpdy>
+  </body>
 
   <body>
     <%= yield %>

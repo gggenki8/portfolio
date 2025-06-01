@@ -1,15 +1,8 @@
-<h2>新規登録</h2>
+<h2 class = "new-account ">新規登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   
-  <div class = "field">
-    <%= f.radio_button :user_type, "teacher", checked: (resource.user_type == "teacher") %>
-    <%= f.label :user_type_teacher, "講師" %>
-    <%= f.radio_button :user_type, "student", checked: (resource.user_type == "student") %>
-    <%= f.label :user_type_student, "生徒" %>
-  </div>
-
   <div class = "field">
     <%= f.label :name, "名前" %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
@@ -38,4 +31,4 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/links"%>

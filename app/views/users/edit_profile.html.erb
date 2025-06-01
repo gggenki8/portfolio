@@ -1,28 +1,41 @@
-<h2>プロフィール編集画面</h2>
-<%= link_to "ユーザー詳細",  user_path(current_user), class: "user-edit" %>
+<div class="container">
+  <div class="header">
+    <h2>プロフィール編集</h2>
+    <%= link_to "ユーザー詳細", edit_user_registration_path, class: "user-edit" %>
+  </div>
 
-<%= form_with(model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true }) do |f| %>
-  <div class="form-group">
-    <%= f.label :image, "アイコン画像" %><br>
-    <% if current_user.image&.attached? %>
-      <div class="mb-2">
-        <%= image_tag current_user.image.variant(resize_to_limit: [100, 100]), alt: "プロフィール画像", class: "rounded" %>
+  <%= form_with(model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true, id: 'profileForm' }) do |f| %>
+    <div class="form-group">
+      <%= f.label :image, "アイコン画像", class: "form-label" %><br>
+      <% if current_user.image&.attached? %>
+        <div class="current-image">
+          <%= image_tag current_user.image.variant(resize_to_limit: [120, 120]), alt: "プロフィール画像", class: "profile-image" %>
+        </div>
+      <% end %>
+      <div class="image-upload-section">
+        <div class="file-input-wrapper">
+          <%= f.file_field :image, class: "file-input", accept: 'image/*', id: 'imageInput' %>
+          <label for="imageInput" class="file-input-label">画像を選択</label>
+        </div>
+        <div class="upload-hint">
+          JPG、PNG、GIF形式の画像をアップロードできます
+        </div>
       </div>
-    <% end %>
-    <%= f.file_field :image %>
-  </div>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :introduction, "自己紹介" %><br>
-    <%= f.text_area :introduction, rows: 5, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :profile, "自己紹介", class: "form-label" %><br>
+      <%= f.text_area :profile, rows: 5, class: "form-control", placeholder: "あなたについて教えてください" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :skill, "スキル" %><br>
-    <%= f.text_area :skill, rows: 3, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :skill, "スキル", class: "form-label" %><br>
+      <%= f.text_area :skill, rows: 3, class: "form-control", placeholder: "保有するスキルや専門分野を入力してください 例:TOEIC 850点、エンジニア歴など" %>
+    </div>
 
-  <div class="form-group mt-3">
-    <%= f.submit "更新する", class: "btn btn-primary" %>
-  </div>
-<% end %>
+    <div class="btn-group">
+      <%= f.submit "更新する", class: "btn btn-primary" %>
+      <%= link_to "戻る", user_path(current_user), class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

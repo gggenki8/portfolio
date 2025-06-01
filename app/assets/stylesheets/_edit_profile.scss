@@ -1,0 +1,40 @@
+/* エラーメッセージ用スタイル */
+.form-group .alert, .form-group .error_messages {
+    margin-bottom: 20px;
+    color: #e3342f;
+    font-size: 0.95rem;
+  }
+  
+  /* プロフィール編集と同じスタイルを流用 */
+  .profile-edit {
+    display: inline-block;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .profile-edit:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: #667eea;
+    transform: translateY(-2px);
+  }
+  
+  .btn-danger {
+    background: #e3342f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background: #cc1f1a;
+    transform: translateY(-2px);
+  }
+  

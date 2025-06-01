@@ -4,6 +4,9 @@
     <div class="profile-header">
       <h1>プロフィール</h1>
     </div>
+    <div>
+      <%= link_to "編集", edit_user_profile_path, class: "profile-edit" %>
+    </div>
 
     <!-- プロフィール内容 -->
     <div class="profile-body">
@@ -19,7 +22,7 @@
       <div class="section">
         <h3 class="section-title">自己紹介</h3>
         <p class="section-text">
-          <%= current_user.introduction.presence || "よろしくお願いします" %>
+          <%= current_user.profile.presence || "よろしくお願いします" %>
         </p>
       </div>
 

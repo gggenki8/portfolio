@@ -5,8 +5,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-         serialize :skills, Array
-
          validates :name, presence: true
-         validates :user_type, presence: true
 end
