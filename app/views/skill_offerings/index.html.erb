@@ -1,0 +1,31 @@
+<h1>提供中のレッスン一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>カテゴリ</th>
+      <th>提供可能時間</th>
+      <th>提供者</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @skill_offerings.each do |so| %>
+      <tr>
+        <td><%= so.id %></td>
+        <td><%= so.category.name %></td>
+        <td><%= so.available_time %></td>
+        <td><%= so.user.name || so.user.email %></td>
+        <td>
+          <%= link_to '詳細', skill_offering_path(so) %>
+          |
+          <%= link_to '編集', edit_skill_offering_path(so) %>
+          |
+          <%= link_to '削除', skill_offering_path(so),
+                      method: :delete, data: { confirm: '本当に削除？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

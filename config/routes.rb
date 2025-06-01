@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/edit_profile', to: 'users#edit_profile', as: :edit_user_profile
 
   resources :users, only: [:show, :edit, :update]
+  resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   get 'home/index'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

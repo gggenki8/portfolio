@@ -1,0 +1,26 @@
+<h1>登録内容の確認</h1>
+
+<p>
+  <strong>カテゴリ：</strong>
+  <%= @skill_offering.category.name %>
+</p>
+
+<p>
+  <strong>提供可能時間：</strong>
+  <%= @skill_offering.available_time %>
+</p>
+
+<p>
+  <strong>詳細：</strong>
+  <%= simple_format(@skill_offering.details) %>
+</p>
+
+<p>
+  <strong>提供者：</strong>
+  <%= @skill_offering.user.name || @skill_offering.user.email %>
+</p>
+
+<%= link_to '一覧に戻る', skill_offerings_path, class: 'btn btn-secondary' %>
+<%= link_to '編集', edit_skill_offering_path(@skill_offering), class: 'btn btn-primary' %>
+<%= link_to '削除', skill_offering_path(@skill_offering), method: :delete,
+            data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>

@@ -1,0 +1,46 @@
+<!-- app/views/skill_offerings/edit.html.erb -->
+<h1>スキル提供の編集</h1>
+
+<%= form_with(model: @skill_offering, local: true) do |f| %>
+  <% if @skill_offering.errors.any? %>
+    <div class="errors">
+      <h2><%= pluralize(@skill_offering.errors.count, "エラー") %>が発生しました:</h2>
+      <ul>
+        <% @skill_offering.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- カテゴリ選択 -->
+  <div class="form-group">
+    <%= f.label :category_id, "カテゴリ（必須）" %><br>
+    <%= f.select :category_id,
+                 options_from_collection_for_select(@categories, :id, :name, @skill_offering.category_id),
+                 prompt: "選択してください" %>
+  </div>
+
+  <!-- 提供可能時間 -->
+  <div class="form-group">
+    <%= f.label :available_time, "提供可能な時間帯（必須）" %><br>
+    <%= f.text_field :available_time,
+                     value: @skill_offering.available_time,
+                     placeholder: "例: 毎週月・水 18:00〜20:00" %>
+    <small>例: 毎週月・水 18:00〜20:00</small>
+  </div>
+
+  <!-- 詳細説明 -->
+  <div class="form-group">
+    <%= f.label :details, "スキルの詳細・説明（必須）" %><br>
+    <%= f.text_area :details, rows: 6,
+                    value: @skill_offering.details,
+                    placeholder: "ここに詳しい内容を入力してください。スキルの特徴や実績、どのようにレッスンを進めるかなどを記載すると良いです。" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to '戻る', skill_offering_path(@skill_offering), class: 'btn btn-secondary' %>

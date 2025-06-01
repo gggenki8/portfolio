@@ -1,0 +1,197 @@
+// Variables
+$primary-color: #3498db;
+$primary-hover: #2980b9;
+$secondary-color: #95a5a6;
+$secondary-hover: #7f8c8d;
+$text-color: #333;
+$heading-color: #2c3e50;
+$border-color: #e1e8ed;
+$error-bg: #fee;
+$error-border: #fcc;
+$error-text: #c33;
+$muted-text: #7f8c8d;
+$bg-color: #f8f9fa;
+$white: #fff;
+
+// Mixins
+@mixin transition($property: all, $duration: 0.3s, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin shadow($level: 1) {
+  @if $level == 1 {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  } @else if $level == 2 {
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+}
+
+@mixin button-hover-effect {
+  transform: translateY(-2px);
+}
+
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $bg-color;
+  padding: 20px;
+}
+
+// Container
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background: $white;
+  border-radius: 10px;
+  @include shadow(1);
+  padding: 40px;
+}
+
+// Headings
+h1 {
+  color: $heading-color;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+// Error handling
+.errors {
+  background-color: $error-bg;
+  border: 1px solid $error-border;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  h2 {
+    color: $error-text;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      color: $error-text;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+// Form styles
+.form-group {
+  margin-bottom: 25px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: $heading-color;
+}
+
+// Form inputs
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid $border-color;
+  border-radius: 8px;
+  font-size: 16px;
+  @include transition(border-color);
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    @include shadow(2);
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+small {
+  display: block;
+  margin-top: 5px;
+  color: $muted-text;
+  font-size: 14px;
+}
+
+// Form actions
+.form-actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  @include transition();
+  margin: 0 10px;
+
+  &-primary {
+    background-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: $primary-hover;
+      @include button-hover-effect;
+    }
+  }
+
+  &-secondary {
+    background-color: $secondary-color;
+    color: $white;
+
+    &:hover {
+      background-color: $secondary-hover;
+      @include button-hover-effect;
+    }
+  }
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+}
