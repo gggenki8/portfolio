@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    edit_user_path # 登録後に編集画面へ
+    edit_user_path(resource) # 登録後に編集画面へ
   end
   # GET /resource/sign_up
   # def new

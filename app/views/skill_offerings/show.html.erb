@@ -1,3 +1,5 @@
+<!-- レッスンの詳細画面 -->
+
 <main class="offering-detail">
 
   <!-- レッスン名 -->
@@ -41,7 +43,7 @@
 
   <!-- 予約ボタン -->
   <section class="offering-reservation">
-    <%= link_to "このレッスンを予約する", "#", class: "reservation-btn" %>
+    <%= link_to "このレッスンを予約する", new_reservation_path(skill_offering_id: @skill_offering.id), class: "reservation-btn" %>
   </section>
 
 </main>
