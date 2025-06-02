@@ -1,26 +1,47 @@
-<h1>登録内容の確認</h1>
+<main class="offering-detail">
 
-<p>
-  <strong>カテゴリ：</strong>
-  <%= @skill_offering.category.name %>
-</p>
+  <!-- レッスン名 -->
+  <h1 class="offering-title"><%= @skill_offering.title %></h1>
 
-<p>
-  <strong>提供可能時間：</strong>
-  <%= @skill_offering.available_time %>
-</p>
+  <!-- 講師情報 -->
+  <section class="offering-teacher">
+    <h2>講師情報</h2>
+    <div class="teacher-profile">
+      <% if @skill_offering.user.image.attached? %>
+        <%= image_tag @skill_offering.user.avatar.variant(resize_to_limit: [100, 100]), class: "teacher-avatar" %>
+      <% else %>
+        <div class="teacher-avatar-placeholder">No Image</div>
+      <% end %>
+      <p class="teacher-name"><%= @skill_offering.user.name %></p>
+      <!-- 講師プロフィールへのリンク -->
+      <%= link_to "講師のプロフィールを見る", user_path(@skill_offering.user), class: "teacher-profile-link" %>
+    </div>
+  </section>
 
-<p>
-  <strong>詳細：</strong>
-  <%= simple_format(@skill_offering.details) %>
-</p>
+  <!-- レッスン概要（カテゴリのみ） -->
+  <section class="offering-info">
+    <h2>レッスン概要</h2>
+    <!-- カテゴリ -->
+    <p class="offering-category">
+      <strong>カテゴリ：</strong>
+      <%= @skill_offering.category.name %>
+    </p>
+    <!-- 提供可能時間 -->
+    <p class="offering-available-time">
+      <strong>提供可能時間：</strong>
+      <%= @skill_offering.available_time %>
+    </p>
+  </section>
 
-<p>
-  <strong>提供者：</strong>
-  <%= @skill_offering.user.name || @skill_offering.user.email %>
-</p>
+  <!-- 詳細説明 -->
+  <section class="offering-description">
+    <h2>詳細説明</h2>
+    <p><%= simple_format(@skill_offering.details) %></p>
+  </section>
 
-<%= link_to '一覧に戻る', skill_offerings_path, class: 'btn btn-secondary' %>
-<%= link_to '編集', edit_skill_offering_path(@skill_offering), class: 'btn btn-primary' %>
-<%= link_to '削除', skill_offering_path(@skill_offering), method: :delete,
-            data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+  <!-- 予約ボタン -->
+  <section class="offering-reservation">
+    <%= link_to "このレッスンを予約する", "#", class: "reservation-btn" %>
+  </section>
+
+</main>

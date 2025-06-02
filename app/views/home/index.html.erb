@@ -2,7 +2,7 @@
   <section class="search-section">
     <h2 class="search-title">あなたの隙間時間に最適なレッスンを見つけよう</h2>
     
-    <%= form_tag "#", method: :get, class: "serch-main" do %>
+    <%= form_tag root_path, method: :get, class: "serch-main" do %>
       <!-- フリーワード入力 -->
       <%= text_field_tag :q, params[:q], placeholder: "学びたいスキルを検索(例:プログラミング、英会話、悩み相談)", class: "search-input" %>
 
@@ -17,48 +17,67 @@
             include_blank: "カテゴリ検索",
             class: "category_select" %>
 
-      <!-- 時間選択 -->
-      <%= select_tag :duration,
-            options_for_select([
-              ["時間を選択",   ""],
-              ["15分",         "15"],
-              ["30分",         "30"],
-              ["45分",         "45"],
-              ["60分",         "60"],
-              ["90分",         "90"],
-              ["120分",        "120"],
-              ["120分以上",    "120"]
-            ], params[:duration]),
-            class: "time-select" %>
-
       <!-- 検索ボタン -->
       <%= submit_tag "🔍 検索", class: "search-btn" %>
     <% end %>
   </section>
 
-  <section class="latest-offerings">
-    <h2 class="section-title">新着のレッスン</h2>
+  <!-- ★ 検索条件がないときだけ「新着のレッスン」を表示 -->
+  <% if params[:q].blank? && params[:category_id].blank? %>
+    <section class="latest-offerings">
+      <h2 class="section-title">新着のレッスン</h2>
 
-    <% if @skill_offerings.any? %>
-      <div class="offerings-list">
-        <% @skill_offerings.each do |offering| %>
-          <div class="offering-card">
-            <!-- カテゴリ名 -->
-            <p class="offering-category"><%= offering.category.name %></p>
-            
-            <!-- 提供可能時間 -->
-            <p class="offering-time"><%= offering.available_time %></p>
-            
-            <!-- 詳細の一部だけ表示する（長文対策） -->
-            <p class="offering-details"><%= truncate(offering.details, length: 100) %></p>
-            
-            <!-- 詳細ページへのリンク -->
-            <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p>まだ登録されたレッスンはありません。</p>
+      <% if @latest_offerings.any? %>
+        <div class="offerings-list">
+          <% @latest_offerings.each do |offering| %>
+            <div class="offering-card">
+              <!-- カテゴリ名 -->
+              <p class="offering-category"><%= offering.category.name %></p>
+              
+              <!-- 提供可能時間 -->
+              <p class="offering-time"><%= offering.available_time %></p>
+              
+              <!-- 詳細の一部だけ表示する -->
+              <p class="offering-details"><%= truncate(offering.details, length: 100) %></p>
+              
+              <!-- 詳細ページへのリンク -->
+              <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>まだ登録されたレッスンはありません。</p>
+      <% end %>
+    </section>
+  <% end %>
+
+
+  <!-- 2. 検索結果一覧（search-results セクション） -->
+  <section class="search-results">
+    <% if params[:q].present? || params[:category_id].present? %>
+      <h2 class="section-title">検索結果</h2>
+
+      <% if @skill_offerings.any? %>
+        <div class="offerings-list">
+          <% @skill_offerings.each do |offering| %>
+            <div class="offering-card">
+              <!-- カテゴリ名 -->
+              <p class="offering-category"><%= offering.category.name %></p>
+              
+              <!-- 提供可能時間 -->
+              <p class="offering-time"><%= offering.available_time %></p>
+              
+              <!-- 詳細の一部だけ表示する -->
+              <p class="offering-details"><%= truncate(offering.details, length: 100) %></p>
+              
+              <!-- 詳細ページへのリンク -->
+              <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>該当するカテゴリが見つかりませんでした。</p>
+      <% end %>
     <% end %>
   </section>
 </main>

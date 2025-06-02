@@ -1,119 +1,157 @@
-/* リセットとベース設定 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// カラー変数
+$primary-color: #2c3e50;
+$secondary-color: #34495e;
+$accent-color: #3498db;
+$text-color: #333;
+$light-gray: #f8f9fa;
+$border-color: #e9ecef;
+$white: #ffffff;
 
-body {
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    color: #1e293b;
-    line-height: 1.6;
-    overflow-x: hidden;
-}
+// フォント変数
+$font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+$font-size-base: 16px;
+$font-size-large: 24px;
+$font-size-medium: 18px;
+$font-size-small: 14px;
 
-/* メインコンテンツ */
-.main-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
+// スペーシング変数
+$spacing-xs: 8px;
+$spacing-sm: 16px;
+$spacing-md: 24px;
+$spacing-lg: 32px;
+$spacing-xl: 48px;
 
-/* 検索セクション */
+// ボーダーラディウス
+$border-radius: 8px;
+
 .search-section {
-    text-align: center;
-    padding: 4rem 0 6rem;
-    position: relative;
+  background-color: $light-gray;
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+  font-family: $font-family;
 }
 
 .search-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    margin-bottom: 3rem;
-    background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  font-size: $font-size-large;
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
-/* 検索フォーム */
 .serch-main {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 3rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
-    gap: 1.5rem;
-    align-items: end;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-/* 検索入力フィールド */
 .search-input {
-    padding: 1rem 1.5rem;
-    border: 2px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
-    width: 100%;
-}
+  flex: 1;
+  min-width: 300px;
+  padding: $spacing-sm;
+  border: 2px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-family: inherit;
+  background-color: $white;
 
-.search-input:focus {
+  &:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    background: white;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+
+  &::placeholder {
+    color: #999;
+    font-size: $font-size-small;
+  }
 }
 
-.search-input::placeholder {
-    color: #94a3b8;
-}
+.category_select {
+  padding: $spacing-sm;
+  border: 2px solid $border-color;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-family: inherit;
+  background-color: $white;
+  color: $text-color;
+  min-width: 150px;
 
-/* セレクトボックス */
-.category-select,
-.time-select {
-    padding: 1rem 1.5rem;
-    border: 2px solid rgba(148, 163, 184, 0.2);
-    border-radius: 12px;
-    font-size: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    width: 100%;
-}
-
-.category-select:focus,
-.time-select:focus {
+  &:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-    background: white;
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
 }
 
-/* 検索ボタン */
 .search-btn {
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
-    white-space: nowrap;
+  background-color: $accent-color;
+  color: $white;
+  border: 2px solid $accent-color;
+  padding: $spacing-sm $spacing-md;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+
+  &:hover {
+    background-color: $white;
+    color: $accent-color;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
-.search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.4);
+// レスポンシブ対応
+@media (max-width: 768px) {
+  .search-section {
+    padding: $spacing-lg $spacing-sm;
+  }
+
+  .search-title {
+    font-size: 20px;
+    margin-bottom: $spacing-md;
+  }
+
+  .serch-main {
+    flex-direction: column;
+    gap: $spacing-sm;
+    align-items: stretch;
+  }
+
+  .search-input {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .category_select {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .search-btn {
+    width: 100%;
+    padding: $spacing-sm;
+  }
 }
 
+@media (max-width: 480px) {
+  .search-input::placeholder {
+    font-size: 12px;
+  }
+
+  .search-title {
+    font-size: $font-size-medium;
+    line-height: 1.3;
+  }
+}
 /* 新着レッスンセクション */
 .latest-offerings {
     margin-top: 6rem;

@@ -1,116 +1,220 @@
 //ヘッダー用
 .header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 1rem 2rem;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 16px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.site-info {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  }
+  
+  .site-info h2 {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+  }
+  
+  .site-name {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  
+  .site-name:hover {
+    color: #3498db;
+  }
+  
+  .site-tagline {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+    font-weight: 300;
+  }
+  
+  .auth-section ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
-    flex-direction: column;
-}
-
-.site-name {
-    font-size: 2rem;
-    font-weight: bold;
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.site-tagline {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: -0.2rem;
-}
-
-.auth-section {
-    display: flex;
-    gap: 1rem;
+    gap: 16px;
     align-items: center;
-}
-
-.teach-btn {
-    padding: 0.7rem 1.5rem;
-    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
+  }
+  
+  .auth-section li {
+    margin: 0;
+  }
+  
+  .teach-btn {
+    background-color: #3498db;
+    color: #ffffff;
     text-decoration: none;
-    display: inline-block;
-}
-
-.login-btn, .signup-btn {
-    padding: 0.7rem 1.5rem;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    border: 2px solid #3498db;
+  }
+  
+  .teach-btn:hover {
+    background-color: #ffffff;
+    color: #3498db;
+  }
+  
+  .profile-btn {
+    color: #34495e;
     text-decoration: none;
-    display: inline-block;
-}
-
-.login-btn {
-    background: transparent;
-    color: #667eea;
-    border: 2px solid #667eea;
-}
-
-.signup-btn {
-    background: linear-gradient(45deg, #667eea, #764ba2);
-    color: white;
-}
-
-.teach-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
-}
-
-.login-btn:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.signup-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-}
-
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px;
+  }
+  
+  .profile-btn:hover {
+    color: #3498db;
+  }
+  
+  .logout-btn {
+    background-color: transparent;
+    color: #34495e;
+    border: 1px solid #e9ecef;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  .logout-btn:hover {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+  }
+  
+  .login-btn {
+    color: #34495e;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px;
+  }
+  
+  .login-btn:hover {
+    color: #3498db;
+  }
+  
+  .signup-btn {
+    background-color: transparent;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid #2c3e50;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  .signup-btn:hover {
+    background-color: #2c3e50;
+    color: #ffffff;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      padding: 16px;
+      gap: 16px;
+    }
+  
+    .site-info {
+      text-align: center;
+    }
+  
+    .site-info h2 {
+      font-size: 20px;
+    }
+  
+    .auth-section ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+  
+    .teach-btn,
+    .logout-btn,
+    .signup-btn {
+      padding: 8px 16px;
+      font-size: 12px;
+    }
+  }
 //フッター用
 .footer {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    backdrop-filter: blur(10px);
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 48px 24px 32px;
+  margin-top: auto;
+  font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  border-top: 3px solid #3498db;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+.footer-coment {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .footer-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #667eea;
+  margin-bottom: 24px;
 }
 
-.footer-description {
-    color: #ccc;
+.footer-title h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.footer-title h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: #3498db;
+}
+
+.footer-discription {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #bdc3c7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 32px 16px 24px;
+  }
+
+  .footer-title h3 {
+    font-size: 20px;
+  }
+
+  .footer-discription {
+    font-size: 14px;
     line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-title h3 {
+    font-size: 18px;
+  }
+
+  .footer-discription {
+    font-size: 13px;
+  }
 }

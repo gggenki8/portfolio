@@ -3,7 +3,17 @@ class SkillOfferingsController < ApplicationController
   before_action :set_skill_offering, only: [:show, :edit, :update, :destroy]
 
   def index
+    @categories = Category.all
     @skill_offerings = SkillOffering.all
+
+    if parms[:q].presrnt?
+        kw = "%#{params[:q].strip}%"
+        @@skill_offerings = @skill_offering.where("title Like :kw OR description :kw", kw: kw)
+    end
+
+    if params[:category_id].present?
+        @skill_offerings = @skill_offering.where(category_id: params[:category_id])
+    end
   end
 
   def new
