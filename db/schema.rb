@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_06_02_065152) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_02_140736) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -45,6 +45,19 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_02_065152) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "skill_offering_id", null: false
+    t.date "reserved_date", null: false
+    t.time "reserved_time", null: false
+    t.text "message", null: false
+    t.string "status", default: "pending", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["skill_offering_id"], name: "index_reservations_on_skill_offering_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
+
   create_table "skill_offerings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "category_id", null: false
@@ -75,6 +88,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_02_065152) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "reservations", "skill_offerings"
+  add_foreign_key "reservations", "users"
   add_foreign_key "skill_offerings", "categories"
   add_foreign_key "skill_offerings", "users"
 end

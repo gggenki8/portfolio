@@ -2,6 +2,8 @@ class SkillOffering < ApplicationRecord
   belongs_to :user
   belongs_to :category
 
+  has_many :reservations, dependent: :destroy
+
   validates :category_id,      presence: true
   validates :available_time,   presence: true, length: { maximum: 100 }
   validates :details,          presence: true, length: { minimum: 10 }

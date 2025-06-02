@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :reservations, only: [:new, :create, :show, :index, :update]
   get 'home/index'
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
