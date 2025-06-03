@@ -21,7 +21,7 @@
           <% if user_signed_in? %>
           <!-- ログイン時のメニュー -->
             <li><%= link_to "レッスンを提供", new_skill_offering_path, class: "teach-btn" %></li>
-            <li><%= link_to "プロフィール", show_user_path, class: "profile-btn" %></li>
+            <li><%= link_to "プロフィール", user_path(current_user), class: "profile-btn" %></li>
             <li><%= link_to "予約管理", reservations_path, class: "reservation-btn" %></li>
             <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
           <% else %>

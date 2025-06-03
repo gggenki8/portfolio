@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    @is_current_user = (@user == current_user)
   end
 
   def edit_profile

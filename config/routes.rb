@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  get 'users/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  # ログイン中のユーザー専用の show ページを /users/show で見せたい場合
-  get 'users/show', to: 'users#show', as: :show_user
-  # プロフィール編集ページ用のカスタムルート
-  get 'users/edit_profile', to: 'users#edit_profile', as: :edit_user_profile
 
-  resources :users, only: [:show, :edit, :update]
+  # 自分用プロフィール
+  get  '/users/profile',      to: 'users#my_profile',   as: :show_user_profile
+  get  '/users/profile/edit', to: 'users#edit_profile', as: :edit_user_profile
+
+  # 他ユーザーのプロフィール表示
+  resources :users, only: [:show]
+
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  resources :reservations, only: [:new, :create, :show, :index, :update]
-  get 'home/index'
-  root "home#index"
+  resources :reservations,    only: [:new, :create, :show, :index, :update]
 
+  root 'home#index'
+  get 'home/index'
 end

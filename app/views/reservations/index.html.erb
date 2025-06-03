@@ -2,6 +2,27 @@
 
 <h1>予約管理</h1>
 
+<!-- 0. 提供中のレッスン一覧を表示 -->
+<section class="offerings-you-provide">
+  <h2>あなたが提供中のレッスン一覧</h2>
+
+  <% if @my_skill_offerings.any? %>
+    <ul>
+      <% @my_skill_offerings.each do |offering| %>
+        <li>
+          <!-- レッスンタイトル と リンク -->
+          <%= link_to offering.title, skill_offering_path(offering), class: "offering-link" %>
+          （カテゴリ：<%= offering.category.name %> &nbsp;
+          提供可能時間：<%= offering.available_time %>）
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>現在、提供中のレッスンはありません。</p>
+  <% end %>
+</section>
+
+
 <!-- 1. 生徒向け：自分が予約したレッスンの一覧 -->
 <section class="my-reservations">
   <h2>あなたの予約一覧</h2>
@@ -20,19 +41,27 @@
       <tbody>
         <% @my_reservations.each do |r| %>
           <tr>
+            <!-- レッスン詳細へのリンク -->
             <td><%= link_to r.skill_offering.title, skill_offering_path(r.skill_offering) %></td>
-            <td><%= r.skill_offering.user.name %></td>
+            
+            <!-- 講師名をプロフィールへのリンクに変更 -->
+            <td>
+              <%= link_to r.skill_offering.user.name, user_path(r.skill_offering.user), class: "profile-link" %>
+            </td>
+            
             <td><%= r.reserved_date.strftime("%Y-%m-%d") %></td>
             <td><%= r.reserved_time.strftime("%H:%M") %></td>
             <td>
-              <% if r.pending? %>
-                承認待ち
-              <% elsif r.approved? %>
-                承認済み
-              <% elsif r.rejected? %>
-                却下
-              <% end %>
-            </td>
+            <% if r.status == "pending" %>
+              承認待ち
+            <% elsif r.status == "approved" %>
+              承認済み
+            <% elsif r.status == "rejected" %>
+              却下
+            <% else %>
+              不明なステータス
+            <% end %>
+          </td>
           </tr>
         <% end %>
       </tbody>
@@ -42,12 +71,10 @@
   <% end %>
 </section>
 
-<hr>
-
 <!-- ------------------------------------------------------- -->
 <!-- 2. 提供者向け：自分が提供したレッスンへの予約一覧 -->
 <section class="provider-reservations">
-  <h2>あなたのレッスンへの仮予約一覧</h2>
+  <h2>あなたへのレッスン予約一覧</h2>
 
   <!-- 承認待ち -->
   <h3>承認待ちの仮予約</h3>
@@ -66,7 +93,7 @@
       <tbody>
         <% @pending_reservations.each do |res| %>
           <tr>
-            <td><%= res.user.name %></td>
+            <td><%= link_to res.user.name, user_path(res.user), class: "profile-link" %></td>
             <td><%= res.skill_offering.title %></td>
             <td><%= res.reserved_date.strftime("%Y-%m-%d") %></td>
             <td><%= res.reserved_time.strftime("%H:%M") %></td>
@@ -85,7 +112,11 @@
 
   <!-- 承認済み -->
   <h3>承認済みの予約</h3>
-  <% if @approved_reservations.any? %>
+
+  <!-- デバッグ: 承認済み件数を一時的に表示 -->
+  <p>※ 承認済み予約 件数: <%= @approved_reservations.try(:count) || 0 %> 件</p>
+
+  <% if @approved_reservations.present? && @approved_reservations.any? %>
     <table>
       <thead>
         <tr>
@@ -98,7 +129,7 @@
       <tbody>
         <% @approved_reservations.each do |res| %>
           <tr>
-            <td><%= res.user.name %></td>
+            <td><%= link_to res.user.name, user_path(res.user), class: "profile-link" %></td>
             <td><%= res.skill_offering.title %></td>
             <td><%= res.reserved_date.strftime("%Y-%m-%d") %></td>
             <td><%= res.reserved_time.strftime("%H:%M") %></td>
@@ -125,7 +156,7 @@
       <tbody>
         <% @rejected_reservations.each do |res| %>
           <tr>
-            <td><%= res.user.name %></td>
+            <td><%= link_to res.user.name, user_path(res.user), class: "profile-link" %></td>
             <td><%= res.skill_offering.title %></td>
             <td><%= res.reserved_date.strftime("%Y-%m-%d") %></td>
             <td><%= res.reserved_time.strftime("%H:%M") %></td>

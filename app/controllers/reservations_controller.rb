@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
       @reservation.status = "pending"  # 仮予約状態
   
       if @reservation.save
-        redirect_to reservation_path(@reservation), notice: "仮予約を受け付けました。提供者の承認をお待ちください。"
+        redirect_to reservation_path(@reservation), notice: "仮予約を受け付けました。"
       else
         @skill_offering = SkillOffering.find(reservation_params[:skill_offering_id])
         render :new
@@ -50,7 +50,8 @@ class ReservationsController < ApplicationController
   
       # --- 生徒向けリスト（自分が予約したもの） ---
       @my_reservations = current_user.reservations.order(created_at: :desc)
-      # もし「生徒側ではステータス別に分けたい」なら、status: "pending"/"approved"/"rejected" を where で分割してもOKです
+      # --- 自分の提供しているレッスンを取得 ---
+      @my_skill_offerings = current_user.skill_offerings.order(created_at: :desc)
     end
   
     # 【提供者向け】仮予約を承認 or 却下してステータスを更新

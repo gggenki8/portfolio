@@ -34,7 +34,7 @@ class SkillOfferingsController < ApplicationController
     end
   
     def show
-      # @skill_offering は set_skill_offering で読み込まれている
+        @skill_offering = SkillOffering.find(params[:id])
     end
   
     def edit
