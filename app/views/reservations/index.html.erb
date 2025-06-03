@@ -2,25 +2,11 @@
 
 <div class="rsv-wrap">
   <h1 class="rsv-title">予約管理</h1>
+     <%= link_to "提供中レッスン一覧を見る",
+              skill_offerings_path,
+              class: "solink-btn" %>
+    </div>
 
-  <!-- 0. 提供中のレッスン一覧 -->
-  <section class="rsv-off">
-    <h2>あなたが提供中のレッスン一覧</h2>
-    <% if @my_skill_offerings.any? %>
-      <ul>
-        <% @my_skill_offerings.each do |offering| %>
-          <li>
-            <%= link_to offering.title, skill_offering_path(offering), class: "off-link" %>
-            （カテゴリ：<%= offering.category.name %> &nbsp;
-            提供可能時間：<%= offering.available_time %>）
-            <%= link_to "編集", edit_skill_offering_path(offering), class: "edit-btn" %>
-          </li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="no-data">現在、提供中のレッスンはありません。</p>
-    <% end %>
-  </section>
 
   <!-- 1. 自分が予約したレッスン一覧 -->
   <section class="rsv-me">

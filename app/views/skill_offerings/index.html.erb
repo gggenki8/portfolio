@@ -1,33 +1,42 @@
 <!-- 自分の提供中レッスン一覧 -->
+<div class="solist-container">
+  <h1 class="solist-title">提供中のレッスン一覧</h1>
 
-<h1>提供中のレッスン一覧</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>カテゴリ</th>
-      <th>提供可能時間</th>
-      <th>提供者</th>
-      <th>操作</th>
-    </tr>
-  </thead>
-  <tbody>
+  <table class="solist-table">
+    <thead>
+      <tr>
+        <th class="solist-col-title">タイトル</th>
+        <th class="solist-col-cat">カテゴリ</th>
+        <th class="solist-col-time">提供可能時間</th>
+        <th class="solist-col-actions">操作</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @skill_offerings.each do |so| %>
       <tr>
-        <td><%= so.id %></td>
+        <td><%= so.title %></td>
         <td><%= so.category.name %></td>
         <td><%= so.available_time %></td>
-        <td><%= so.user.name || so.user.email %></td>
-        <td>
-          <%= link_to '詳細', skill_offering_path(so) %>
-          |
-          <%= link_to '編集', edit_skill_offering_path(so) %>
-          |
-          <%= link_to '削除', skill_offering_path(so),
-                      method: :delete, data: { confirm: '本当に削除？' } %>
+        <td class="solist-actions-cell">
+          <!-- 「詳細」リンク -->
+          <%= link_to '詳細',
+                      skill_offering_path(so),
+                      class: "solist-btn-detail" %>
+    
+          <!-- 「編集」リンク -->
+          <%= link_to '編集',
+                      edit_skill_offering_path(so),
+                      class: "solist-btn-edit" %>
+    
+          <!-- 「削除」ボタン（button_to は <form> を生成） -->
+          <%= button_to '削除',
+                        skill_offering_path(so),
+                        method: :delete,
+                        data: { confirm: '本当に削除しますか？' },
+                        class: "solist-btn-delete" %>
         </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    <% end %>    
+    </tbody>
+  </table>
+</div>
