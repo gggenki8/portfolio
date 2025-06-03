@@ -2,24 +2,23 @@
 
 <div class="profile-wrapper">
   <div class="profile-card">
-    <!-- ヘッダー -->
     <div class="profile-header">
       <h1>プロフィール</h1>
+      <% if @user == current_user %>
+        <%= link_to "編集", edit_user_profile_path, class: "profile-edit" %>
+      <% end %>
     </div>
 
-    <!-- 自分のプロフィールを見ているときのみ「編集」リンクを表示 -->
-    <% if @user == current_user %>
-      <div>
-        <%= link_to "編集", edit_user_profile_path, class: "profile-edit" %>
-      </div>
-    <% end %>
-
-    <!-- プロフィール内容 -->
+    <!-- プロフィール本文 -->
     <div class="profile-body">
       <!-- アイコンと名前 -->
       <div class="profile-info">
         <div class="profile-icon">
-          <%= @user.name.first(1) %>
+          <% if @user.image.attached? %>
+            <%= image_tag @user.image.variant(resize_to_fill: [80, 80]), alt: "プロフィール画像" %>
+          <% else %>
+            <span><%= @user.name.first(1) %></span>
+          <% end %>
         </div>
         <h2 class="profile-name"><%= @user.name %></h2>
       </div>

@@ -1,0 +1,220 @@
+// 予約管理画面
+.rsv-wrap {
+    padding: 20px;
+  }
+  
+  /* メインタイトル */
+  .rsv-wrap .rsv-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  /* セクション共通スタイル */
+  .rsv-wrap h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 1rem;
+    color: #444;
+  }
+  
+  .rsv-wrap h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem;
+    color: #555;
+  }
+  
+  /* 0. 提供中のレッスン一覧 */
+  .rsv-off {
+    margin-bottom: 2rem;
+  }
+  
+  .rsv-off ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .rsv-off li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .rsv-off .off-link {
+    font-size: 1rem;
+    color: #2c3e50;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  }
+  
+  .rsv-off .off-link:hover {
+    text-decoration: underline;
+  }
+  
+  .rsv-off .edit-btn {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #667eea;
+    text-decoration: none;
+    padding: 4px 8px;
+    border: 1px solid #667eea;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .rsv-off .edit-btn:hover {
+    background: #667eea;
+    color: #fff;
+  }
+  
+  /* 1. 自分が予約したレッスン一覧 */
+  .rsv-me {
+    margin-bottom: 2rem;
+  }
+  
+  .rsv-me table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.75rem;
+  }
+  
+  .rsv-me th,
+  .rsv-me td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  
+  .rsv-me th {
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .rsv-me td a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  .rsv-me td a:hover {
+    text-decoration: underline;
+  }
+  
+  .rsv-me .no-data {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* 2. 提供者向け予約一覧 */
+  .rsv-prv {
+    margin-bottom: 2rem;
+  }
+  
+  .rsv-prv table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+  
+  .rsv-prv th,
+  .rsv-prv td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+  
+  .rsv-prv th {
+    background: #f5f5f5;
+    color: #333;
+    font-weight: 600;
+  }
+  
+  .rsv-prv td a {
+    color: #2c3e50;
+    text-decoration: none;
+  }
+  
+  .rsv-prv td a:hover {
+    text-decoration: underline;
+  }
+  
+  .rsv-prv .no-data {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .rsv-prv .btn-wrap {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .rsv-prv .approve-btn,
+  .rsv-prv .reject-btn {
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    color: #fff;
+    background: #667eea;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .rsv-prv .reject-btn {
+    background: #e53e3e;
+  }
+  
+  .rsv-prv button:hover {
+    opacity: 0.9;
+  }
+  
+  /* リンク共通 */
+  .rsv-wrap a {
+    color: #2c3e50;
+  }
+  
+  .rsv-wrap a:hover {
+    color: #667eea;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 600px) {
+    .rsv-wrap {
+      padding: 10px;
+    }
+  
+    .rsv-off li {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .rsv-off .edit-btn {
+      margin-top: 0.5rem;
+      margin-left: 0;
+    }
+  
+    .rsv-me th,
+    .rsv-me td,
+    .rsv-prv th,
+    .rsv-prv td {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .rsv-prv .btn-wrap {
+      flex-direction: column;
+    }
+  
+    .rsv-prv .approve-btn,
+    .rsv-prv .reject-btn {
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+  }
+  

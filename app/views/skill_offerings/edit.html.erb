@@ -44,3 +44,8 @@
 <% end %>
 
 <%= link_to '戻る', skill_offering_path(@skill_offering), class: 'btn btn-secondary' %>
+
+<%= link_to '削除する', skill_offering_path(@skill_offering),
+               method: :delete,
+               data: { confirm: '本当にこのレッスンを削除してよろしいですか？' },
+               class: 'btn btn-danger' %>

@@ -31,14 +31,17 @@
         <div class="offerings-list">
           <% @latest_offerings.each do |offering| %>
             <div class="offering-card">
+              <!-- タイトル -->
+              <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
+
               <!-- カテゴリ名 -->
-              <p class="offering-category"><%= offering.category.name %></p>
+              <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
               
               <!-- 提供可能時間 -->
-              <p class="offering-time"><%= offering.available_time %></p>
+              <%= link_to offering.available_time, skill_offering_path(offering), class: "offering-link" %>
               
               <!-- 詳細の一部だけ表示する -->
-              <p class="offering-details"><%= truncate(offering.details, length: 100) %></p>
+              <%= link_to truncate(offering.details, length: 100), skill_offering_path(offering), class: "offering-link" %>
               
               <!-- 詳細ページへのリンク -->
               <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
@@ -61,17 +64,20 @@
         <div class="offerings-list">
           <% @skill_offerings.each do |offering| %>
             <div class="offering-card">
-              <!-- カテゴリ名 -->
-              <p class="offering-category"><%= offering.category.name %></p>
-              
-              <!-- 提供可能時間 -->
-              <p class="offering-time"><%= offering.available_time %></p>
-              
-              <!-- 詳細の一部だけ表示する -->
-              <p class="offering-details"><%= truncate(offering.details, length: 100) %></p>
-              
-              <!-- 詳細ページへのリンク -->
-              <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
+            <!-- タイトル -->
+            <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
+
+            <!-- カテゴリ名 -->
+            <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
+            
+            <!-- 提供可能時間 -->
+            <%= link_to offering.available_time, skill_offering_path(offering), class: "offering-link" %>
+            
+            <!-- 詳細の一部だけ表示する -->
+            <%= link_to truncate(offering.details, length: 100), skill_offering_path(offering), class: "offering-link" %>
+            
+            <!-- 詳細ページへのリンク -->
+            <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
             </div>
           <% end %>
         </div>

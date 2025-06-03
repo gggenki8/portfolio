@@ -1,17 +1,17 @@
 <!-- プロフィール編集画面 -->
 
-<div class="container">
-  <div class="header">
+<div class="profile-edit-container">
+  <div class="profile-edit-header">
     <h2>プロフィール編集</h2>
-    <%= link_to "ユーザー詳細", edit_user_registration_path, class: "user-edit" %>
+    <%= link_to "ユーザー詳細", edit_user_registration_path, class: "profile-edit-user-link" %>
   </div>
 
   <%= form_with(model: current_user, url: user_path(current_user), method: :patch, local: true, html: { multipart: true, id: 'profileForm' }) do |f| %>
-    <div class="form-group">
-      <%= f.label :image, "アイコン画像", class: "form-label" %><br>
+    <div class="profile-edit-form-group profile-image-group">
+      <%= f.label :image, "アイコン画像", class: "profile-edit-form-label" %><br>
       <% if current_user.image&.attached? %>
         <div class="current-image">
-          <%= image_tag current_user.image.variant(resize_to_limit: [120, 120]), alt: "プロフィール画像", class: "profile-image" %>
+          <%= image_tag current_user.image.variant(resize_to_limit: [120, 120]), alt: "プロフィール画像", class: "profile-edit-image" %>
         </div>
       <% end %>
       <div class="image-upload-section">
@@ -25,19 +25,20 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <%= f.label :profile, "自己紹介", class: "form-label" %><br>
-      <%= f.text_area :profile, rows: 5, class: "form-control", placeholder: "あなたについて教えてください" %>
+    <div class="profile-edit-form-group">
+      <%= f.label :profile, "自己紹介", class: "profile-edit-form-label" %><br>
+      <%= f.text_area :profile, rows: 5, class: "profile-edit-form-control", placeholder: "あなたについて教えてください" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :skill, "スキル", class: "form-label" %><br>
-      <%= f.text_area :skill, rows: 3, class: "form-control", placeholder: "保有するスキルや専門分野を入力してください 例:TOEIC 850点、エンジニア歴など" %>
+    <div class="profile-edit-form-group">
+      <%= f.label :skill, "スキル", class: "profile-edit-form-label" %><br>
+      <%= f.text_area :skill, rows: 3, class: "profile-edit-form-control", placeholder: "保有するスキルや専門分野を入力してください 例:TOEIC 850点、エンジニア歴など" %>
     </div>
 
-    <div class="btn-group">
-      <%= f.submit "更新する", class: "btn btn-primary" %>
-      <%= link_to "戻る", user_path(current_user), class: "btn btn-secondary" %>
+    <div class="profile-edit-btn-group">
+      <%= f.submit "更新する", class: "profile-edit-btn profile-edit-btn-primary" %>
+      <%= link_to "戻る", user_path(current_user), class: "profile-edit-btn profile-edit-btn-secondary" %>
     </div>
   <% end %>
 </div>
+

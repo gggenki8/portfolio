@@ -1,55 +1,56 @@
-<div class="container">
-  <div class="header">
+<div class="user-detail-edit-container">
+  <div class="user-detail-edit-header">
     <h2>ユーザー情報編集</h2>
-    <%= link_to "プロフィール", edit_user_profile_path, class: "profile-edit" %>
+    <%= link_to "プロフィール", edit_user_profile_path, class: "user-detail-edit-profile-link" %>
   </div>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'userDetailForm' }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
-
-    <div class="form-group">
-      <%= f.label :name, class: "form-label" %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'userDetailForm', class: 'user-detail-edit-form' }) do |f| %>
+    <div class="user-detail-edit-form-group">
+      <%= render "devise/shared/error_messages", resource: resource %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :email, class: "form-label" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    <div class="user-detail-edit-form-group">
+      <%= f.label :name, class: "user-detail-edit-form-label" %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "user-detail-edit-form-control" %>
+    </div>
+
+    <div class="user-detail-edit-form-group">
+      <%= f.label :email, class: "user-detail-edit-form-label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-detail-edit-form-control" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div class="form-group">
-        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <div class="user-detail-edit-form-group">
+        <p class="user-detail-edit-hint">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
       </div>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label :password, "パスワード", class: "form-label" %> <i>(変更しない場合は空白)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <div class="user-detail-edit-form-group">
+      <%= f.label :password, "パスワード", class: "user-detail-edit-form-label" %> <i>(変更しない場合は空白)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "user-detail-edit-form-control" %>
       <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> 文字以上</em>
+        <p class="user-detail-edit-hint"><%= @minimum_password_length %> 文字以上</p>
       <% end %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :password_confirmation, "パスワード確認", class: "form-label" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <div class="user-detail-edit-form-group">
+      <%= f.label :password_confirmation, "パスワード確認", class: "user-detail-edit-form-label" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "user-detail-edit-form-control" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :current_password, "変更前のパスワード", class: "form-label" %><br />
-      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+    <div class="user-detail-edit-form-group">
+      <%= f.label :current_password, "変更前のパスワード", class: "user-detail-edit-form-label" %><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "user-detail-edit-form-control" %>
     </div>
 
-    <div class="btn-group">
-      <%= f.submit "更新する", class: "btn btn-primary" %>
-      <%= link_to "戻る", user_path(current_user), class: "btn btn-secondary" %>
+    <div class="user-detail-edit-btn-group">
+      <%= f.submit "更新する", class: "user-detail-edit-btn user-detail-edit-btn-primary" %>
+      <%= link_to "戻る", user_path(current_user), class: "user-detail-edit-btn user-detail-edit-btn-secondary" %>
     </div>
   <% end %>
 
-  <h3 class="mt-5">アカウントを削除</h3>
-  <div class="btn-group">
-    <%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "btn btn-danger" %>
+  <div class="user-detail-delete-section">
+    <h3>アカウントを削除</h3>
+    <%= button_to "削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか？" }, method: :delete, class: "user-detail-delete-btn" %>
   </div>
 </div>

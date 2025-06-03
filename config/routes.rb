@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get  '/users/profile/edit', to: 'users#edit_profile', as: :edit_user_profile
 
   # 他ユーザーのプロフィール表示
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
 
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :reservations,    only: [:new, :create, :show, :index, :update]

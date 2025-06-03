@@ -88,7 +88,7 @@ class SkillOfferingsController < ApplicationController
     end
   
     def skill_offering_params
-      params.require(:skill_offering).permit(:category_id, :available_time, :details)
+      params.require(:skill_offering).permit(:title, :category_id, :available_time, :details)
     end
 end
   

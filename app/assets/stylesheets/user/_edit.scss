@@ -1,221 +1,209 @@
-.container {
+// ユーザー情報編集画面用
+.user-detail-edit-container {
     max-width: 600px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    animation: fadeInUp 0.6s ease-out;
-  }
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+    padding: 30px;
   
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+    // ヘッダー部分: タイトルとリンクを横並びに配置
+    .user-detail-edit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
   
-  .header {
-    text-align: center;
-    margin-bottom: 40px;
-  }
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+      }
   
-  .header h2 {
-    color: #333;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+      .user-detail-edit-profile-link {
+        font-size: 0.9rem;
+        color: #667eea;
+        text-decoration: none;
+        padding: 6px 12px;
+        border: 1px solid #667eea;
+        border-radius: 6px;
+        transition: background-color 0.3s ease, color 0.3s ease;
   
-  .user-edit {
-    display: inline-block;
-    color: #667eea;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-  }
-  
-  .user-edit:hover {
-    background: rgba(102, 126, 234, 0.1);
-    border-color: #667eea;
-    transform: translateY(-2px);
-  }
-  
-  .form-group {
-    margin-bottom: 30px;
-  }
-  
-  .form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-    font-size: 1.1rem;
-  }
-  
-  .image-upload-section {
-    text-align: center;
-    padding: 20px;
-    border: 2px dashed #ddd;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    background: rgba(102, 126, 234, 0.05);
-    margin-top: 10px;
-  }
-  
-  .image-upload-section:hover {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
-  }
-  
-  .current-image {
-    margin-bottom: 15px;
-  }
-  
-  .profile-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #fff;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-  }
-  
-  .profile-image:hover {
-    transform: scale(1.05);
-  }
-  
-  .file-input-wrapper {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .file-input {
-    position: absolute;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .file-input-label {
-    display: inline-block;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .file-input-label:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.8);
-    resize: vertical;
-  }
-  
-  .form-control:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    background: white;
-  }
-  
-  .form-control::placeholder {
-    color: #999;
-  }
-  
-  .btn-group {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .btn {
-    padding: 15px 30px;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    transition: all 0.3s ease;
-    min-width: 140px;
-  }
-  
-  .btn-primary {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-  }
-  
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-  }
-  
-  .btn-secondary {
-    background: #f8f9fa;
-    color: #6c757d;
-    border: 2px solid #dee2e6;
-  }
-  
-  .btn-secondary:hover {
-    background: #e9ecef;
-    border-color: #adb5bd;
-    transform: translateY(-2px);
-  }
-  
-  .upload-hint {
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      margin: 10px;
-      padding: 30px 20px;
+        &:hover {
+          background: #667eea;
+          color: #fff;
+        }
+      }
     }
   
-    .header h2 {
-      font-size: 1.8rem;
+    // フォームエリア
+    .user-detail-edit-form {
+      // 共通フォームグループ
+      .user-detail-edit-form-group {
+        margin-bottom: 20px;
+  
+        .user-detail-edit-form-label {
+          display: block;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #555;
+          margin-bottom: 6px;
+        }
+  
+        .user-detail-edit-form-control {
+          width: 100%;
+          padding: 10px 14px;
+          font-size: 1rem;
+          border: 2px solid #e1e5e9;
+          border-radius: 8px;
+          background: #fafafa;
+          transition: border-color 0.3s ease;
+  
+          &:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+          }
+        }
+  
+        // パスワードヒントなどのメッセージ
+        .user-detail-edit-hint {
+          font-size: 0.85rem;
+          color: #777;
+          margin-top: 4px;
+        }
+      }
+  
+      // 送信ボタン・戻るリンクなど
+      .user-detail-edit-btn-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+  
+        .user-detail-edit-btn {
+          flex: 1;
+          text-align: center;
+          padding: 10px 0;
+          font-size: 1rem;
+          font-weight: 600;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          text-decoration: none;
+        }
+  
+        .user-detail-edit-btn-primary {
+          background: #667eea;
+          color: #fff;
+  
+          &:hover {
+            background: #5a6fd8;
+          }
+        }
+  
+        .user-detail-edit-btn-secondary {
+          background: #e1e5e9;
+          color: #555;
+  
+          &:hover {
+            background: #d1d6dc;
+          }
+        }
+      }
     }
   
-    .btn-group {
-      flex-direction: column;
+    // アカウント削除ボタン
+    .user-detail-delete-section {
+      margin-top: 40px;
+  
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+      }
+  
+      .user-detail-delete-btn {
+        background: #e53e3e;
+        color: #fff;
+        padding: 10px 0;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+  
+        &:hover {
+          background: #c53030;
+        }
+      }
     }
   
-    .btn {
-      width: 100%;
-    }
-  }
+    // レスポンシブ対応
+    @media (max-width: 480px) {
+      margin: 30px 10px;
+      padding: 20px 15px;
   
+      .user-detail-edit-header {
+        flex-direction: column;
+        align-items: flex-start;
+  
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+  
+        .user-detail-edit-profile-link {
+          align-self: flex-end;
+          font-size: 0.85rem;
+          padding: 5px 10px;
+        }
+      }
+  
+      .user-detail-edit-form {
+        .user-detail-edit-form-group {
+          margin-bottom: 18px;
+  
+          .user-detail-edit-form-control {
+            padding: 8px 12px;
+            font-size: 0.95rem;
+          }
+  
+          .user-detail-edit-hint {
+            font-size: 0.8rem;
+          }
+        }
+  
+        .user-detail-edit-btn-group {
+          flex-direction: column;
+  
+          .user-detail-edit-btn {
+            font-size: 0.95rem;
+            padding: 9px 0;
+          }
+        }
+      }
+  
+      .user-detail-delete-section {
+        margin-top: 30px;
+  
+        h3 {
+          font-size: 1.1rem;
+          margin-bottom: 10px;
+        }
+  
+        .user-detail-delete-btn {
+          font-size: 0.95rem;
+          padding: 8px 0;
+        }
+      }
+    }
+}
