@@ -34,6 +34,9 @@
               <!-- タイトル -->
               <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
 
+              <!-- 提供者 --> 
+              <%= link_to offering.user.name, user_path(offering.user), class: "offering-provider-link" %>
+              
               <!-- カテゴリ名 -->
               <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
               
@@ -67,6 +70,9 @@
             <!-- タイトル -->
             <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
 
+            <!-- 提供者 --> 
+            <%= link_to offering.user.name, user_path(offering.user), class: "offering-provider-link" %>
+            
             <!-- カテゴリ名 -->
             <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
             

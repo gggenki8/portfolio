@@ -38,10 +38,12 @@
   </section>
 
   <!-- 予約ボタン -->
-  <section class="off-reserve">
-    <%= link_to "このレッスンを予約する",
+  <% if current_user.nil? || current_user != @skill_offering.user %>
+    <section class="off-reserve">
+      <%= link_to "このレッスンを予約する",
                 new_reservation_path(skill_offering_id: @skill_offering.id),
                 class: "res-btn" %>
-  </section>
+    </section>
+  <% end %>
 </main>
 

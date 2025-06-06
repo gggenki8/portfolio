@@ -11,7 +11,13 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
-  resources :reservations,    only: [:new, :create, :show, :index, :update]
+  resources :reservations,    only: [:new, :create, :show, :index, :update] do
+    member do
+      get :approved
+    end
+
+    resources :messages, only: [:create]
+  end
 
   root 'home#index'
   get 'home/index'

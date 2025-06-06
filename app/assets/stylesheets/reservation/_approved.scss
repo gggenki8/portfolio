@@ -1,0 +1,171 @@
+/* 予約承認後*/
+
+/* 全体ラッパー */
+.reservation-approved-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  /* 承認見出し */
+  .approved-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .approved-header h1 {
+    font-size: 1.75rem;
+    color: #16a34a;
+    margin-bottom: 8px;
+  }
+  
+  .approved-header .subtitle {
+    font-size: 1rem;
+    color: #555555;
+  }
+  
+  /* レッスン詳細カード */
+  .detail-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+  }
+  
+  .detail-card .detail-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #333333;
+  }
+  
+  .detail-card .detail-sub {
+    font-size: 0.95rem;
+    color: #666666;
+    margin-bottom: 12px;
+  }
+  
+  .detail-card .detail-info {
+    font-size: 0.95rem;
+    color: #444444;
+    margin-bottom: 12px;
+  }
+  
+  .detail-card .detail-desc {
+    font-size: 0.9rem;
+    color: #555555;
+    line-height: 1.5;
+  }
+  
+  /* メッセージセクション */
+  .message-section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  
+  .message-section h3 {
+    font-size: 1.25rem;
+    color: #333333;
+    margin-bottom: 12px;
+  }
+  
+  /* 過去メッセージ一覧 */
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  
+  .sender-label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  
+  .message-meta {
+    font-size: 0.75rem;
+    color: #777;
+  }
+  
+  .messages-list {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+  }
+  
+  .message-item {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .message--mine {
+    align-items: flex-end; /* 右寄せ */
+  }
+  
+  .message--others {
+    align-items: flex-start; /* 左寄せ */
+  }
+  
+  .message-content {
+    background-color: #e0f2fe; /* 薄い青 */
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #034f84;
+    max-width: 70%;
+    word-break: break-word;
+  }
+  
+  .message--mine .message-content {
+    background-color: #dcfce7; /* 薄い緑 */
+    color: #065f46;
+  }
+  
+  .message-meta {
+    font-size: 0.75rem;
+    color: #777777;
+    margin-top: 4px;
+  }
+  
+  /* 新規メッセージ投稿フォーム */
+  .message-form .field {
+    margin-bottom: 12px;
+  }
+  
+  .message-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  
+  .btn-send {
+    background-color: #10b981; /* 緑 */
+    color: #ffffff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-send:hover {
+    background-color: #059669;
+  }
+  
+  /* 空データ時メッセージ */
+  .no-data {
+    font-size: 0.9rem;
+    color: #6b7280;
+    text-align: center;
+    padding: 20px 0;
+  }
+  

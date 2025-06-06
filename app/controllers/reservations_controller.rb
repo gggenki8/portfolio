@@ -2,7 +2,7 @@
 
 class ReservationsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_reservation, only: [:show, :update]
+    before_action :set_reservation, only: [:show,:approved, :update]
     before_action :set_skill_offering, only: [:new]
   
     # 【生徒向け】仮予約フォーム
@@ -72,11 +72,23 @@ class ReservationsController < ApplicationController
   
       redirect_to reservations_path
     end
-  
+
+    def approved
+      unless @reservation.status == "approved"
+        redirect_to reservation_path(@reservation), alert: "この画面は承認済みの予約でしか利用できません"
+        return
+      end
+
+      @messages = @reservation.messages.includes(:user).order(created_at: :asc)
+    end
+
     private
   
     def set_reservation
       @reservation = Reservation.find(params[:id])
+      unless @reservation
+        redirect_to reservation_path, alert: "該当する予約が見つかりません"
+      end
     end
   
     def set_skill_offering

@@ -1,0 +1,100 @@
+<!-- 予約承認後の画面 -->
+<!-- app/views/reservations/approved.html.erb -->
+
+<%= content_for :page_title, "予約が承認されました" %>
+
+<div class="reservation-approved-container">
+  <!-- 1. 「承認されました」見出し -->
+  <div class="approved-header">
+    <h1>予約が承認されました！</h1>
+    <p class="subtitle">
+      この画面でレッスン詳細とメッセージのやり取りができます。
+    </p>
+  </div>
+
+  <!-- 2. レッスン詳細カード -->
+  <div class="detail-card">
+    <h2 class="detail-title">
+      <%= @reservation.skill_offering.title %>
+    </h2>
+    <p class="detail-sub">
+      講師：
+      <%= link_to @reservation.skill_offering.user.name,
+                  user_path(@reservation.skill_offering.user),
+                  class: "profile-link" %>
+      &nbsp;|&nbsp;
+      生徒：
+      <%= link_to @reservation.user.name,
+                  user_path(@reservation.user),
+                  class: "profile-link" %>
+    </p>
+    <p class="detail-info">
+      予約日：<%= @reservation.reserved_date.strftime("%Y-%m-%d") %>
+      &nbsp;　時間：<%= @reservation.reserved_time.strftime("%H:%M") %>
+    </p>
+    <p class="detail-desc">
+      <%= simple_format(
+            @reservation.skill_offering.details.presence ||
+            "レッスンの説明はありません"
+          ) %>
+    </p>
+  </div>
+
+  <!-- 3. メッセージ（簡易チャット）セクション -->
+  <div class="message-section">
+    <h3>メッセージ</h3>
+
+    <!-- 3-1. 既存メッセージ一覧 -->
+    <div class="messages-list">
+      <% if @messages.present? && @messages.any? %>
+        <% @messages.each do |msg| %>
+          <% if msg.user_id == current_user.id %>
+            <!-- 自分のメッセージ -->
+            <div class="message-item message--mine">
+              <div class="message-header">
+                <span class="sender-label">あなた (自分)</span>
+                <span class="message-meta"><%= msg.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+              </div>
+              <div class="message-content">
+                <p><%= msg.content %></p>
+              </div>
+            </div>
+          <% else %>
+            <!-- 相手のメッセージ -->
+            <div class="message-item message--others">
+              <div class="message-header">
+                <span class="sender-label">
+                  <%# 投稿者が講師か生徒かを判定して別ラベルを出す例 %>
+                  <% if msg.user_id == @reservation.skill_offering.user_id %>
+                    講師：<%= msg.user.name %>
+                  <% else %>
+                    生徒：<%= msg.user.name %>
+                  <% end %>
+                </span>
+                <span class="message-meta"><%= msg.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+              </div>
+              <div class="message-content">
+                <p><%= msg.content %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <p class="no-data">まだメッセージはありません。</p>
+      <% end %>
+    </div>
+    
+
+    <!-- 3-2. 新規メッセージ投稿フォーム -->
+    <div class="message-form">
+      <%= form_with(model: [@reservation, Message.new], local: true) do |f| %>
+        <div class="field">
+          <%= f.text_area :content, rows: 3, placeholder: "ここにメッセージを入力…" %>
+        </div>
+        <div class="actions">
+          <%= f.submit "送信", class: "btn-send" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,7 +4,7 @@ class SkillOfferingsController < ApplicationController
   
     def index
       @categories = Category.all
-      @skill_offerings = SkillOffering.all
+      @skill_offerings = current_user.skill_offerings
   
       # フリーワード検索
       if params[:q].present?
