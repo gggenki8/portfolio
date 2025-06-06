@@ -40,29 +40,32 @@
             <tbody>
               <% @my_reservations.each do |r| %>
                 <tr>
-                  <td><%= link_to r.skill_offering.title, skill_offering_path(r.skill_offering) %></td>
-                  <td><%= link_to r.skill_offering.user.name, user_path(r.skill_offering.user), class: "profile-link" %></td>
-                  <td><%= r.reserved_date.strftime("%Y-%m-%d") %></td>
-                  <td><%= r.reserved_time.strftime("%H:%M") %></td>
-                  <td>
-                    <% if r.status == "approved" %>
-                      <%= link_to "詳細を見る", approved_reservation_path(r), class: "profile-link" %>
-                    <% else %>
-                      <% case r.status %>
-                      <% when "pending" %>
-                        <span class="status-badge status-badge--pending">承認待ち</span>
-                      <% when "approved" %>
-                        <span class="status-badge status-badge--approved">承認済み</span>
-                      <% when "rejected" %>
-                        <span class="status-badge status-badge--rejected">却下</span>
-                      <% else %>
-                        <span class="status-badge">不明</span>
-                      <% end %>
-                    <% end %>
-                  </td>
-                </tr>
+                <td><%= link_to r.skill_offering.title, skill_offering_path(r.skill_offering) %></td>
+                <td><%= link_to r.skill_offering.user.name, user_path(r.skill_offering.user), class: "profile-link" %></td>
+                <td><%= r.reserved_date.strftime("%Y-%m-%d") %></td>
+                <td><%= r.reserved_time.strftime("%H:%M") %></td>
+                <td>
+                <% if r.approved? %>
+                <!-- 承認済みのときは詳細ページへ -->
+                  <%= link_to "詳細を見る", approved_reservation_path(r), class: "profile-link" %>
+                <% elsif r.completed? %>
+                  <!-- レッスン完了済み（completed）なら生徒側に「レビューを書く」リンク -->
+                  <%= link_to "レビューを書く", approved_reservation_path(r), class: "btn-review" %>
+                <% else %>
+                <% case r.status %>
+                <% when "pending" %>
+                  <span class="status-badge status-badge--pending">承認待ち</span>
+                <% when "rejected" %>
+                  <span class="status-badge status-badge--rejected">却下</span>
+                <% else %>
+                  <span class="status-badge">不明</span>
+                <% end %>
               <% end %>
-            </tbody>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+
           </table>
         </div>
       <% else %>
@@ -121,6 +124,7 @@
                 <th>レッスン名</th>
                 <th>予約日</th>
                 <th>予約時間</th>
+                <th>ステータス</th>
               </tr>
             </thead>
             <tbody>
@@ -198,3 +202,48 @@
     </div>
   </div>
 </div>
+
+<!-- ─── ここから「レビュー一覧」セクション ─── -->
+<div class="reviews-section">
+  <h2>レビュー一覧</h2>
+
+  <% # レビューがついている予約だけを抽出 %>
+  <% reviewed_reservations = @my_reservations.select { |r| r.review.present? } %>
+
+  <% if reviewed_reservations.any? %>
+    <% reviewed_reservations.each do |r| %>
+      <div class="review-card">
+        <!-- 1. レッスンタイトルと講師名 -->
+        <div class="review-header">
+          <h3 class="review-title"><%= r.skill_offering.title %></h3>
+          <p class="review-instructor">
+            講師：
+            <%= link_to r.skill_offering.user.name,
+                        user_path(r.skill_offering.user),
+                        class: "profile-link" %>
+          </p>
+        </div>
+
+        <!-- 2. 星評価 -->
+        <div class="review-rating">
+          <span class="star-rating-large">
+            <%= "★" * r.review.rating %><%= "☆" * (5 - r.review.rating) %>
+          </span>
+        </div>
+
+        <!-- 3. コメント -->
+        <div class="review-comment">
+          <p><%= simple_format(r.review.comment) %></p>
+        </div>
+
+        <!-- 4. 投稿日時 -->
+        <div class="review-meta">
+          <small>投稿日：<%= r.review.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="no-reviews">まだレビューはありません。</p>
+  <% end %>
+</div>
+

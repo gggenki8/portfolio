@@ -13,9 +13,12 @@ Rails.application.routes.draw do
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :reservations,    only: [:new, :create, :show, :index, :update] do
     member do
-      get :approved
+      get   :approved
+      patch :mark_completed
+      patch :cancel
     end
 
+    resource  :review, only: [:new, :create, :show]
     resources :messages, only: [:create]
   end
 

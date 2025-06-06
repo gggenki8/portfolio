@@ -2,7 +2,7 @@
 
 class ReservationsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_reservation, only: [:show,:approved, :update]
+    before_action :set_reservation, only: [:show, :approved, :update, :cancel, :mark_completed]
     before_action :set_skill_offering, only: [:new]
   
     # 【生徒向け】仮予約フォーム
@@ -37,19 +37,27 @@ class ReservationsController < ApplicationController
   
     # 【生徒向け】仮予約完了画面
     def show
-      # @reservation は set_reservation で読み込まれる
+      if @reservation.completed?
+        redirect_to approved_reservation_path(@reservation) and returnend
+      end
     end
   
     # 【提供者／生徒共通】予約管理画面
     def index
       # --- 提供者向けリスト ---
       my_offering_ids = current_user.skill_offerings.pluck(:id)
-      @pending_reservations  = Reservation.where(skill_offering_id: my_offering_ids, status: "pending").order(created_at: :desc)
-      @approved_reservations = Reservation.where(skill_offering_id: my_offering_ids, status: "approved").order(created_at: :desc)
-      @rejected_reservations = Reservation.where(skill_offering_id: my_offering_ids, status: "rejected").order(created_at: :desc)
-  
+      @pending_reservations  = Reservation.where(skill_offering_id: my_offering_ids, status: "pending")
+                                          .order(created_at: :desc)
+      @approved_reservations = Reservation.where(skill_offering_id: my_offering_ids, status: "approved")
+                                          .order(created_at: :desc)
+      @rejected_reservations = Reservation.where(skill_offering_id: my_offering_ids, status: "rejected")
+                                          .order(created_at: :desc)
+    
       # --- 生徒向けリスト（自分が予約したもの） ---
-      @my_reservations = current_user.reservations.order(created_at: :desc)
+      @my_reservations = current_user.reservations
+                                     .includes(:skill_offering, :review)  # ← ここで review をプリロード
+                                     .order(created_at: :desc)
+    
       # --- 自分の提供しているレッスンを取得 ---
       @my_skill_offerings = current_user.skill_offerings.order(created_at: :desc)
     end
@@ -74,20 +82,47 @@ class ReservationsController < ApplicationController
     end
 
     def approved
-      unless @reservation.status == "approved"
-        redirect_to reservation_path(@reservation), alert: "この画面は承認済みの予約でしか利用できません"
+      unless @reservation.approved? || @reservation.completed?
+        redirect_to reservation_path(@reservation), alert: "この画面は承認済みまたは完了済みの予約でしか利用できません"
         return
       end
 
       @messages = @reservation.messages.includes(:user).order(created_at: :asc)
+
+      if @reservation.completed? && @reservation.user_id == current_user.id && @reservation.review.blank?
+        @review = Review.new
+      end
+    end
+
+    def mark_completed
+      # 講師本人かつ承認済み予約以外は不可
+      unless @reservation.skill_offering.user_id == current_user.id && @reservation.approved?
+        redirect_to reservation_path(@reservation), alert: "この操作はできません"
+        return
+      end
+  
+      @reservation.update(status: :completed)
+      redirect_to approved_reservation_path(@reservation), notice: "レッスンを完了とマークしました"
+    end
+  
+    # 予約キャンセル（生徒用）
+    def cancel
+      # 予約者本人かつ承認済み予約以外は不可
+      unless @reservation.user_id == current_user.id && @reservation.approved?
+        redirect_to reservation_path(@reservation), alert: "この操作はできません"
+        return
+      end
+  
+      @reservation.update(status: :canceled)
+      redirect_to reservations_path, notice: "予約をキャンセルしました"
     end
 
     private
   
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      @reservation = Reservation.find_by(id: params[:id])
       unless @reservation
-        redirect_to reservation_path, alert: "該当する予約が見つかりません"
+        redirect_to reservation_path, alert: "該当する予約が見つかりません" unless @reservation
       end
     end
   
@@ -98,4 +133,8 @@ class ReservationsController < ApplicationController
     def reservation_params
       params.require(:reservation).permit(:skill_offering_id, :reserved_date, :reserved_time, :message)
     end
+
+    def review_params
+      params.require(:review).permit(:rating, :comment)
+    end  
 end

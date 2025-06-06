@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_06_06_075855) do
+ActiveRecord::Schema[7.0].define(version: 2025_06_06_141833) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -68,6 +68,17 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_06_075855) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer "reservation_id", null: false
+    t.integer "user_id", null: false
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reservation_id"], name: "index_reviews_on_reservation_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "skill_offerings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "category_id", null: false
@@ -102,6 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_06_06_075855) do
   add_foreign_key "messages", "users"
   add_foreign_key "reservations", "skill_offerings"
   add_foreign_key "reservations", "users"
+  add_foreign_key "reviews", "reservations"
+  add_foreign_key "reviews", "users"
   add_foreign_key "skill_offerings", "categories"
   add_foreign_key "skill_offerings", "users"
 end

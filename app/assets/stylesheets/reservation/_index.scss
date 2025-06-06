@@ -260,3 +260,181 @@
     }
   }
   
+  /* レビューフォーム全体のコンテナ */
+.write-review-wrap {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 24px;
+  }
+  
+  /* 見出し */
+  .write-review-wrap h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #111827;
+  }
+  
+  /* フォームの各フィールド */
+  .write-review-wrap .field {
+    margin-bottom: 16px;
+  }
+  
+  /* ラベル */
+  .write-review-wrap label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #374151;
+  }
+  
+  /* セレクトボックス */
+  .write-review-wrap select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #111827;
+    background-color: #ffffff;
+  }
+  
+  /* テキストエリア */
+  .write-review-wrap textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #111827;
+    background-color: #ffffff;
+    resize: vertical;
+  }
+  
+  /* ボタンのコンテナ */
+  .write-review-wrap .actions {
+    margin-top: 12px;
+    text-align: right;
+  }
+  
+  /* 送信ボタン */
+  .btn-review-submit {
+    background-color: #3b82f6;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .btn-review-submit:hover {
+    background-color: #2563eb;
+  }
+  
+  /* エラーメッセージ全体のコンテナ */
+  .write-review-wrap .error-messages {
+    margin-top: 16px;
+    padding: 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+  }
+  
+  /* エラー見出し */
+  .write-review-wrap .error-messages h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #b91c1c;
+    margin-bottom: 8px;
+  }
+  
+  /* エラー内容のリスト */
+  .write-review-wrap .error-messages ul {
+    margin-left: 16px;
+  }
+  
+  .write-review-wrap .error-messages li {
+    font-size: 0.875rem;
+    color: #b91c1c;
+    margin-bottom: 4px;
+  }
+  
+  /* レビュー一覧全体のコンテナ */
+.reviews-section {
+    margin-top: 40px;
+    padding: 0 16px;
+  }
+  
+  /* レビュー一覧の見出し */
+  .reviews-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #111827;
+  }
+  
+  /* レビューがないときのメッセージ */
+  .no-reviews {
+    font-size: 1rem;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  /* 個々のレビューカード */
+  .review-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* レビューヘッダー：タイトルトと講師名 */
+  .review-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  /* レッスンタイトル */
+  .review-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+  
+  /* 講師名 */
+  .review-instructor {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-top: 4px;
+  }
+  
+  /* 星評価（大きめのサイズ） */
+  .review-rating {
+    margin-bottom: 16px;
+  }
+  .star-rating-large {
+    font-size: 1.125rem;
+    color: #f59e0b; /* オレンジ色 */
+  }
+  
+  /* コメント */
+  .review-comment p {
+    font-size: 1rem;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+  
+  /* 投稿日時 */
+  .review-meta small {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  
