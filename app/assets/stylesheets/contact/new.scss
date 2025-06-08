@@ -1,0 +1,16 @@
+.flash {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    &--notice {
+      background-color: #e6fffa;
+      color: #065f46;
+      border: 1px solid #34d399;
+    }
+    &--alert {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #f87171;
+    }
+  }

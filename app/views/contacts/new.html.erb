@@ -1,0 +1,46 @@
+<!-- お問い合わせフォーム -->
+<% if notice %>
+  <div class="flash flash--notice"><%= notice %></div>
+<% end %>
+
+<% if alert %>
+  <div class="flash flash--alert"><%= alert %></div>
+<% end %>
+<h1>お問い合わせ</h1>
+
+<%= form_with model: @contact, local: true do |f| %>
+  <% if @contact.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@contact.errors.count, "エラー") %>があります：</h2>
+      <ul>
+        <% @contact.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, "お名前" %><br>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br>
+    <%= f.email_field :email, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject, "件名" %><br>
+    <%= f.text_field :subject, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "お問い合わせ内容" %><br>
+    <%= f.text_area :body, rows: 6, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "送信する", class: "btn-submit" %>
+  </div>
+<% end %>

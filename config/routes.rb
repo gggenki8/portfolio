@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/create'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
 
   # 他ユーザーのプロフィール表示
   resources :users, only: [:show, :edit, :update]
+  resources :contacts, only: [:new, :create]
+  
 
   resources :skill_offerings, only: [:new, :create, :index, :show, :edit, :update, :destroy]
   resources :reservations,    only: [:new, :create, :show, :index, :update] do
