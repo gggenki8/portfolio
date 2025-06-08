@@ -73,22 +73,36 @@ class ReservationsController < ApplicationController
   
     # 【提供者向け】仮予約を承認 or 却下してステータスを更新
     def update
+      # 提供者（講師）による承認／却下
       if @reservation.skill_offering.user_id == current_user.id
-        if params[:status] == "approved"
+        case params[:status]
+        when "approved"
           @reservation.approved!
           flash[:notice] = "予約を承認しました。"
-        elsif params[:status] == "rejected"
+        when "rejected"
           @reservation.rejected!
           flash[:alert] = "予約を却下しました。"
         else
-          flash[:alert] = "不正なステータスです。"
+          flash[:alert] = "提供者用の不正なステータスです。"
         end
+  
+      # 生徒によるキャンセル
+      elsif @reservation.user_id == current_user.id
+        if params[:status] == "cancelled"
+          @reservation.cancelled!
+          flash[:alert] = "予約をキャンセルしました。"
+        else
+          flash[:alert] = "生徒用の不正なステータスです。"
+        end
+  
       else
+        # その他のユーザーは操作不可
         flash[:alert] = "この予約を操作する権限がありません。"
       end
   
-      redirect_to reservations_path
+      redirect_back(fallback_location: reservations_path)
     end
+  
 
     def approved
       unless @reservation.approved? || @reservation.completed?

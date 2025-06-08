@@ -40,32 +40,29 @@
             <tbody>
               <% @my_reservations.each do |r| %>
                 <tr>
-                <td><%= link_to r.skill_offering.title, skill_offering_path(r.skill_offering) %></td>
-                <td><%= link_to r.skill_offering.user.name, user_path(r.skill_offering.user), class: "profile-link" %></td>
-                <td><%= r.reserved_date.strftime("%Y-%m-%d") %></td>
-                <td><%= r.reserved_time.strftime("%H:%M") %></td>
-                <td>
-                <% if r.approved? %>
-                <!-- 承認済みのときは詳細ページへ -->
-                  <%= link_to "詳細を見る", approved_reservation_path(r), class: "profile-link" %>
-                <% elsif r.completed? %>
-                  <!-- レッスン完了済み（completed）なら生徒側に「レビューを書く」リンク -->
-                  <%= link_to "レビューを書く", approved_reservation_path(r), class: "btn-review" %>
-                <% else %>
-                <% case r.status %>
-                <% when "pending" %>
-                  <span class="status-badge status-badge--pending">承認待ち</span>
-                <% when "rejected" %>
-                  <span class="status-badge status-badge--rejected">却下</span>
-                <% else %>
-                  <span class="status-badge">不明</span>
-                <% end %>
+                  <td><%= link_to r.skill_offering.title, skill_offering_path(r.skill_offering) %></td>
+                  <td><%= link_to r.skill_offering.user.name, user_path(r.skill_offering.user), class: "profile-link" %></td>
+                  <td><%= r.reserved_date.strftime("%Y-%m-%d") %></td>
+                  <td><%= r.reserved_time.strftime("%H:%M") %></td>
+                  <td>
+                    <% if r.pending? || r.approved? %>
+                      <%= link_to '詳細を確認', reservation_path(r), class: 'detail-link' %>
+                      <%= button_to '❌', reservation_path(r, status: 'cancelled'), method: :patch,
+                                    data: { confirm: '本当にキャンセルしますか？' }, class: 'cancel-btn' %>
+                    <% elsif r.cancelled? %>
+                      <span class="status-badge status-badge--cancelled">キャンセル済み</span>
+                    <% elsif r.rejected? %>
+                      <span class="status-badge status-badge--rejected">却下</span>
+                    <% elsif r.completed? %>
+                      <%= link_to '詳細を確認', reservation_path(r), class: 'detail-link' %>
+                      <%= link_to 'レビューを書く', approved_reservation_path(r), class: 'btn-review' %>
+                    <% else %>
+                      <span class="status-badge">不明</span>
+                    <% end %>
+                  </td>
+                </tr>
               <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-
+            </tbody>
           </table>
         </div>
       <% else %>
@@ -115,7 +112,7 @@
 
       <!-- 承認済み -->
       <h3>承認済みの予約</h3>
-      <% if @approved_reservations.present? && @approved_reservations.any? %>
+      <% if @approved_reservations.any? %>
         <div class="table-wrapper">
           <table>
             <thead>
@@ -135,9 +132,9 @@
                   <td><%= res.reserved_date.strftime("%Y-%m-%d") %></td>
                   <td><%= res.reserved_time.strftime("%H:%M") %></td>
                   <td>
-                    <%= link_to "詳細を見る",
-                          approved_reservation_path(res),
-                          class: "profile-link" %>
+                    <%= link_to '詳細を確認', reservation_path(res), class: 'detail-link' %>
+                    <%= button_to '予約をキャンセル', reservation_path(res, status: 'cancelled'), method: :patch,
+                                  data: { confirm: '本当にキャンセルしますか？' }, class: 'cancel-btn' %>
                   </td>
                 </tr>
               <% end %>
@@ -149,7 +146,7 @@
       <% end %>
 
       <!-- 却下済み -->
-      <h3>却下された予約</h3>
+      <h3>キャンセル・却下された予約</h3>
       <% if @rejected_reservations.any? %>
         <div class="table-wrapper">
           <table>
@@ -167,7 +164,7 @@
                   <td><%= link_to res.user.name, user_path(res.user), class: "profile-link" %></td>
                   <td><%= res.skill_offering.title %></td>
                   <td><%= res.reserved_date.strftime("%Y-%m-%d") %></td>
-                  <td><%= res.reserved_time.strftime("%H:%M") %></td>
+                  <td><%= res.reserved_time.strftime("H:%M") %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -183,24 +180,24 @@
   <div class="dashboard-card">
     <h1>提供中のレッスン一覧</h1>
     <div class="solist-grid">
-    <% if @my_skill_offerings.present? && @my_skill_offerings.any? %>
-      <% @my_skill_offerings.each do |so| %>
-        <div class="solist-card">
-          <h3><%= so.title %></h3>
-          <p><%= so.category.name %></p>
-          <p>提供時間: <%= so.available_time %></p>
-          <div class="actions">
-            <%= link_to '詳細', skill_offering_path(so) %>
-            <%= link_to '編集', edit_skill_offering_path(so) %>
-            <%= button_to '削除', skill_offering_path(so), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+      <% if @my_skill_offerings.any? %>
+        <% @my_skill_offerings.each do |so| %>
+          <div class="solist-card">
+            <h3><%= so.title %></h3>
+            <p><%= so.category.name %></p>
+            <p>提供時間: <%= so.available_time %></p>
+            <div class="actions">
+              <%= link_to '詳細', skill_offering_path(so) %>
+              <%= link_to '編集', edit_skill_offering_path(so) %>
+              <%= button_to '削除', skill_offering_path(so), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <p>提供中のレッスンはありません</p>
       <% end %>
-    <% else %>
-      <p>提供中のレッスンはありません</p>
-    <% end %>
     </div>
   </div>
 </div>
 
-<%= render 'received_reviews' %>
+<%= render "received_reviews" %>

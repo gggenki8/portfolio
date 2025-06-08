@@ -21,7 +21,7 @@
           <% if user_signed_in? %>
           <!-- ログイン時のメニュー -->
             <li><%= link_to "レッスンを提供", new_skill_offering_path, class: "teach-btn" %></li>
-            <li><%= link_to "プロフィール", user_path(current_user), class: "profile-btn" %></li>
+            <li><%= link_to current_user.name, user_path(current_user), class: "profile-btn" %></li>
             <li><%= link_to "予約管理", reservations_path, class: "reservation-btn" %></li>
             <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
           <% else %>
@@ -40,19 +40,20 @@
   </body>
 
   <body>
-    <footer class = "footer">
-      <div class = "footer-coment">
-        <div class = "footer-title">
-          <h3>Sukima Share</h3>
-        </div>
-        <div class = "footer-discription">
-          隙間時間を活用してスキルを学び、教えるプラットフォーム。<br>
-          あなたの知識と経験を共有し、新しいスキルを身につけましょう。
-        </div>
-        <div class="footer-contact-wrapper">
-          <%= link_to "お問い合わせはこちら", new_contact_path, class: "btn-footer-link" %>
-        </div>
+  <footer class="app-footer">
+    <div class="app-footer__inner">
+      <div class="app-footer__title">
+        <h3>Sukima Share</h3>
       </div>
-    </footer>
-  <body>
+      <div class="app-footer__description">
+        隙間時間を活用してスキルを学び、教えるプラットフォーム。<br>
+        あなたの知識と経験を共有し、新しいスキルを身につけましょう。
+      </div>
+      <div class="app-footer__contact">
+        <%= link_to "お問い合わせはこちら", new_contact_path, class: "app-footer__btn" %>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

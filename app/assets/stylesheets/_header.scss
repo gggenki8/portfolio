@@ -103,76 +103,70 @@
     background-color: #c0392b;
 }
 
-/* フッター全体 */
-.footer {
-  background-color: #34495e;
-  color: #ffffff;
-  padding: 2rem;
-  margin-top: 4rem;
+/* app-footer.component.scss */
 
-  /* フッター内コンテンツ */
-  .footer-coment {
+/* ベース */
+.app-footer {
+    background-color: #34495e;
+    color: #ffffff;
+    padding: 2rem;
+    margin-top: 4rem;
+  }
+  
+  /* 内部コンテナ */
+  .app-footer__inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
     text-align: center;
-
-    /* タイトル */
-    .footer-title {
-      h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-      }
+  }
+  
+  /* タイトル */
+  .app-footer__title h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 説明文 */
+  .app-footer__description {
+    font-size: 0.95rem;
+    color: #bdc3c7;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  
+  /* お問い合わせボタン */
+  .app-footer__btn {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: #ffffff;
+    padding: 0.8rem 1.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .app-footer__btn:hover {
+    background-color: #2563eb;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .app-footer {
+      padding: 1.5rem 1rem;
     }
-
-    /* お問い合わせリンク */
-    .footer-contact-wrapper {
-      .btn-footer-link {
-        display: inline-block;
-        background-color: #3b82f6;    /* ボタン背景 */
-        color: #ffffff;               /* 文字色 */
-        padding: 0.8rem 1.6rem;       /* 内側余白 */
-        border-radius: 6px;           /* 角丸 */
-        text-decoration: none;        /* 下線なし */
-        font-size: 0.95rem;
-        font-weight: 500;
-        transition: background-color 0.2s ease-in-out;
-
-        &:hover {
-          background-color: #2563eb;  /* ホバー時 */
-        }
-      }
+  
+    .app-footer__title h3 {
+      font-size: 1.3rem;
     }
-
-    /* 説明文 */
-    .footer-discription {
-      font-size: 0.95rem;
-      color: #bdc3c7;
-      line-height: 1.6;
-      font-weight: 300;
+  
+    .app-footer__description {
+      font-size: 0.9rem;
     }
   }
-}
-
-/* レスポンシブ対応 */
-@media (max-width: 768px) {
-  .footer {
-    padding: 1.5rem 1rem;
-
-    .footer-coment {
-      .footer-title {
-        h3 {
-          font-size: 1.3rem;
-        }
-      }
-
-      .footer-discription {
-        font-size: 0.9rem;
-      }
-    }
-  }
-}
+  

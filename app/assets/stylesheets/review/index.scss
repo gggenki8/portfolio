@@ -1,0 +1,92 @@
+  /* レビュー一覧全体のコンテナ */
+  .reviews-section {
+    margin-top: 40px;
+    padding: 0 16px;
+  }
+  
+  /* レビュー一覧の見出し */
+  .reviews-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #111827;
+  }
+  
+  /* レビューがないときのメッセージ */
+  .no-reviews {
+    font-size: 1rem;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  /* 個々のレビューカード */
+  .review-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* レビューヘッダー：タイトルトと講師名 */
+  .review-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  /* レッスンタイトル */
+  .review-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+  
+  /* 講師名 */
+  .review-instructor {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-top: 4px;
+  }
+  
+  /* 星評価（大きめのサイズ） */
+  .review-rating {
+    margin-bottom: 16px;
+  }
+  .star-rating-large {
+    font-size: 1.125rem;
+    color: #f59e0b; /* オレンジ色 */
+  }
+  
+  /* コメント */
+  .review-comment p {
+    font-size: 1rem;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+  
+  /* 投稿日時 */
+  .review-meta small {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+  /* 詳細リンク */
+.detail-link {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #2563eb;
+    background-color: transparent;
+    padding: 4px 8px;
+    text-decoration: none;
+    border: 1px solid #2563eb;
+    border-radius: 4px;
+    margin-right: 8px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .detail-link:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+  

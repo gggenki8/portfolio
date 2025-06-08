@@ -9,7 +9,8 @@ class Reservation < ApplicationRecord
     approved:  "approved", 
     rejected:  "rejected",
     completed: "completed",
-    reviewd:   "reviewed"
+    reviewed:  "reviewed", 
+    cancelled: "cancelled"
   }
 
   validates :reserved_date,  presence: true

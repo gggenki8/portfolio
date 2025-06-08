@@ -1,277 +1,110 @@
-//初期ページ
-.main-content {
+.home-page {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
-    background-color: #ffffff;
-}
-
-/* 検索セクション */
-.search-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: #fff;
+  }
+  
+  .search-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     border-radius: 12px;
-    padding: 2.5rem;
-    margin-bottom: 3rem;
+    padding: 2rem;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.search-title {
-    color: #2c3e50;
+    margin-bottom: 3rem;
+  }
+  .search-section__title {
     font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 2rem;
-    line-height: 1.4;
-}
-
-.serch-main {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+  }
+  .search-form {
     display: flex;
     gap: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-    align-items: center;
-}
-
-.search-input {
-    flex: 1;
-    padding: 0.875rem 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .search-input,
+  .search-select {
+    flex: 1 1 200px;
+    padding: 0.75rem 1rem;
     border: 2px solid #dee2e6;
     border-radius: 8px;
     font-size: 1rem;
-    background-color: #ffffff;
-    transition: border-color 0.2s ease;
-}
-
-.search-input:focus {
-    outline: none;
+  }
+  .search-input:focus,
+  .search-select:focus {
     border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-.search-input::placeholder {
-    color: #6c757d;
-}
-
-.category_select {
-    padding: 0.875rem 1rem;
-    border: 2px solid #dee2e6;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #ffffff;
-    min-width: 180px;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-}
-
-.category_select:focus {
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-}
-
-.search-btn {
-    padding: 0.875rem 1.5rem;
-    background-color: #3498db;
-    color: #ffffff;
+  }
+  .search-button {
+    padding: 0.75rem 1.5rem;
+    background: #3498db;
+    color: #fff;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-}
-
-.search-btn:hover {
-    background-color: #2980b9;
-}
-
-/* セクションタイトル */
-.section-title {
-    color: #2c3e50;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid #3498db;
-    display: inline-block;
-}
-
-/* 新着レッスンセクション */
-.latest-offerings {
-    margin-bottom: 3rem;
-}
-
-/* 検索結果セクション */
-.search-results {
+  }
+  .search-button:hover {
+    background: #2980b9;
+  }
+  
+  .offerings-section {
     margin-bottom: 2rem;
-}
-
-/* レッスン一覧 */
-.offerings-list {
+  }
+  .offerings-section__title {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+  .offerings-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    margin-top: 1.5rem;
-}
-
-/* レッスンカード */
-.offering-card {
-    background-color: #ffffff;
+  }
+  .offering-card {
+    background: #fff;
     border: 1px solid #e9ecef;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    height: 100%;
-    min-height: 280px;
-}
-
-.offering-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
-}
-
-/* レッスンタイトルリンク */
-.offering-title-link {
+    gap: 0.5rem;
+  }
+  .offering-title {
+    font-size: 1.3rem;
+    font-weight: bold;
     color: #2c3e50;
-    font-size: 1.2rem;
-    font-weight: 600;
     text-decoration: none;
-    line-height: 1.4;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.offering-title-link:hover {
-    color: #3498db;
-}
-
-/* レッスン情報リンク */
-.offering-link {
-    color: #6c757d;
+  }
+  .offering-provider,
+  .offering-category,
+  .offering-time,
+  .offering-detail {
     font-size: 0.9rem;
-    text-decoration: none;
-    line-height: 1.5;
-    padding: 0.25rem 0;
-    border-radius: 4px;
-    transition: color 0.2s ease;
-}
-
-.offering-link:hover {
-    color: #3498db;
-}
-
-/* カテゴリ名のスタイル */
-.offering-card .offering-link:first-of-type {
-    background-color: #e8f4f8;
-    color: #2980b9;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
+    color: #555;
+  }
+  .offering-category {
+    background: rgba(40,167,69,0.1);
     display: inline-block;
-    align-self: flex-start;
-}
-
-.offering-card .offering-link:first-of-type:hover {
-    background-color: #d4e9f2;
-    color: #1f5f99;
-}
-
-/* 詳細を見るボタン */
-.offering-card .offering-link:last-child {
-    background-color: #3498db;
-    color: #ffffff;
-    text-align: center;
-    padding: 0.75rem 1rem;
+    padding: 2px 6px;
     border-radius: 6px;
-    font-weight: 500;
+  }
+  .offering-button {
     margin-top: auto;
-}
-
-.offering-card .offering-link:last-child:hover {
-    background-color: #2980b9;
-    color: #ffffff;
-}
-
-/* 空の状態のメッセージ */
-.search-results p,
-.latest-offerings p {
-    color: #6c757d;
-    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    background: #3498db;
+    color: #fff;
     text-align: center;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-/* レスポンシブデザイン */
-@media (max-width: 768px) {
-    .main-content {
-        padding: 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+  .offering-button:hover {
+    background: #2980b9;
+  }
+  
+  @media (max-width: 768px) {
+    .search-form {
+      flex-direction: column;
     }
-
-    .search-section {
-        padding: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .search-title {
-        font-size: 1.4rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .serch-main {
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    .search-input,
-    .category_select {
-        width: 100%;
-        min-width: auto;
-    }
-
-    .search-btn {
-        width: 100%;
-        padding: 1rem;
-    }
-
-    .offerings-list {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .offering-card {
-        padding: 1.25rem;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .search-section {
-        padding: 1rem;
-    }
-
-    .search-title {
-        font-size: 1.2rem;
-        line-height: 1.3;
-    }
-
-    .offering-card {
-        padding: 1rem;
-    }
-
-    .offering-title-link {
-        font-size: 1.1rem;
-    }
-}
+  }

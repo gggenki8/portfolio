@@ -1,97 +1,42 @@
-<main class="main-content">
+<main class="home-page">
+  <!-- 検索セクション -->
   <section class="search-section">
-    <h2 class="search-title">あなたの隙間時間に最適なレッスンを見つけよう</h2>
-    
-    <%= form_tag root_path, method: :get, class: "serch-main" do %>
-      <!-- フリーワード入力 -->
+    <h2 class="search-section__title">あなたの隙間時間に最適なレッスンを見つけよう</h2>
+    <%= form_tag root_path, method: :get, class: "search-form" do %>
       <%= text_field_tag :q, params[:q], placeholder: "学びたいスキルを検索(例:プログラミング、英会話、悩み相談)", class: "search-input" %>
-
-      <!-- カテゴリ検索 -->
       <%= select_tag :category_id,
-            options_from_collection_for_select(
-              @categories,
-              :id,
-              :name,
-              params[:category_id]
-            ),
+            options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
             include_blank: "カテゴリ検索",
-            class: "category_select" %>
-
-      <!-- 検索ボタン -->
-      <%= submit_tag "🔍 検索", class: "search-btn" %>
+            class: "search-select" %>
+      <%= submit_tag "🔍 検索", class: "search-button" %>
     <% end %>
   </section>
 
-  <!-- ★ 検索条件がないときだけ「新着のレッスン」を表示 -->
-  <% if params[:q].blank? && params[:category_id].blank? %>
-    <section class="latest-offerings">
-      <h2 class="section-title">新着のレッスン</h2>
+  <!-- レッスン一覧 -->
+  <section class="offerings-section">
+    <% if params[:q].blank? && params[:category_id].blank? %>
+      <h2 class="offerings-section__title">新着のレッスン</h2>
+      <% items = @latest_offerings %>
+    <% else %>
+      <h2 class="offerings-section__title">検索結果</h2>
+      <% items = @skill_offerings %>
+    <% end %>
 
-      <% if @latest_offerings.any? %>
-        <div class="offerings-list">
-          <% @latest_offerings.each do |offering| %>
-            <div class="offering-card">
-              <!-- タイトル -->
-              <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
-
-              <!-- 提供者 --> 
-              <span class="offering-provider-label">提供者：</span>
-              <%= link_to offering.user.name, user_path(offering.user), class: "offering-provider-link" %>
-              
-              <!-- カテゴリ名 -->
-              <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
-              
-              <!-- 提供可能時間 -->
-              <%= link_to offering.available_time, skill_offering_path(offering), class: "offering-link" %>
-              
-              <!-- 詳細の一部だけ表示する -->
-              <%= link_to truncate(offering.details, length: 100), skill_offering_path(offering), class: "offering-link" %>
-              
-              <!-- 詳細ページへのリンク -->
-              <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>まだ登録されたレッスンはありません。</p>
-      <% end %>
-    </section>
-  <% end %>
-
-
-  <!-- 2. 検索結果一覧（search-results セクション） -->
-  <section class="search-results">
-    <% if params[:q].present? || params[:category_id].present? %>
-      <h2 class="section-title">検索結果</h2>
-
-      <% if @skill_offerings.any? %>
-        <div class="offerings-list">
-          <% @skill_offerings.each do |offering| %>
-            <div class="offering-card">
-            <!-- タイトル -->
-            <%= link_to offering.title, skill_offering_path(offering), class: "offering-title-link" %>
-
-            <!-- 提供者 --> 
-            <span class="offering-provider-label">提供者：</span>
-            <%= link_to offering.user.name, user_path(offering.user), class: "offering-provider-link" %> 
-            
-            <!-- カテゴリ名 -->
-            <%= link_to offering.category.name, skill_offering_path(offering), class: "offering-link" %>
-            
-            <!-- 提供可能時間 -->
-            <%= link_to offering.available_time, skill_offering_path(offering), class: "offering-link" %>
-            
-            <!-- 詳細の一部だけ表示する -->
-            <%= link_to truncate(offering.details, length: 100), skill_offering_path(offering), class: "offering-link" %>
-            
-            <!-- 詳細ページへのリンク -->
-            <%= link_to '詳細を見る', skill_offering_path(offering), class: 'offering-link' %>
-            </div>
-          <% end %>
-        </div>
-      <% else %>
-        <p>該当するカテゴリが見つかりませんでした。</p>
-      <% end %>
+    <% if items.any? %>
+      <div class="offerings-list">
+        <% items.each do |offering| %>
+          <div class="offering-card">
+            <%= link_to offering.title, skill_offering_path(offering), class: "offering-title" %>
+            <p class="offering-provider">提供者: <%= link_to offering.user.name, user_path(offering.user) %></p>
+            <p class="offering-category"><%= offering.category.name %></p>
+            <p class="offering-time"><%= offering.available_time %></p>
+            <p class="offering-detail"><%= truncate(offering.details, length: 100) %></p>
+            <%= link_to '詳細を見る', skill_offering_path(offering), class: "offering-button" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>該当するレッスンはありません。</p>
     <% end %>
   </section>
 </main>
