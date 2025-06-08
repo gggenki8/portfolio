@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       :name,
       :email,
       :image,
-      :introduction,
+      :profile,
       :skill
     )
   end

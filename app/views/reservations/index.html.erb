@@ -203,47 +203,4 @@
   </div>
 </div>
 
-<!-- ─── ここから「レビュー一覧」セクション ─── -->
-<div class="reviews-section">
-  <h2>レビュー一覧</h2>
-
-  <% # レビューがついている予約だけを抽出 %>
-  <% reviewed_reservations = @my_reservations.select { |r| r.review.present? } %>
-
-  <% if reviewed_reservations.any? %>
-    <% reviewed_reservations.each do |r| %>
-      <div class="review-card">
-        <!-- 1. レッスンタイトルと講師名 -->
-        <div class="review-header">
-          <h3 class="review-title"><%= r.skill_offering.title %></h3>
-          <p class="review-instructor">
-            講師：
-            <%= link_to r.skill_offering.user.name,
-                        user_path(r.skill_offering.user),
-                        class: "profile-link" %>
-          </p>
-        </div>
-
-        <!-- 2. 星評価 -->
-        <div class="review-rating">
-          <span class="star-rating-large">
-            <%= "★" * r.review.rating %><%= "☆" * (5 - r.review.rating) %>
-          </span>
-        </div>
-
-        <!-- 3. コメント -->
-        <div class="review-comment">
-          <p><%= simple_format(r.review.comment) %></p>
-        </div>
-
-        <!-- 4. 投稿日時 -->
-        <div class="review-meta">
-          <small>投稿日：<%= r.review.created_at.strftime("%Y-%m-%d %H:%M") %></small>
-        </div>
-      </div>
-    <% end %>
-  <% else %>
-    <p class="no-reviews">まだレビューはありません。</p>
-  <% end %>
-</div>
-
+<%= render 'received_reviews' %>

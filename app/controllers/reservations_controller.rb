@@ -56,10 +56,19 @@ class ReservationsController < ApplicationController
       # --- 生徒向けリスト（自分が予約したもの） ---
       @my_reservations = current_user.reservations
                                      .includes(:skill_offering, :review)  # ← ここで review をプリロード
+                                     .where.not(status: "reviewed")
                                      .order(created_at: :desc)
     
       # --- 自分の提供しているレッスンを取得 ---
       @my_skill_offerings = current_user.skill_offerings.order(created_at: :desc)
+
+      @received_reviews = Review
+        .joins(reservation: :skill_offering)
+        .where(skill_offerings: { user_id: current_user.id })
+        .includes(:reservation)
+        .order(created_at: :desc)
+
+        Rails.logger.debug "⭐️ ReceivedReviews count: #{@received_reviews.size}"
     end
   
     # 【提供者向け】仮予約を承認 or 却下してステータスを更新

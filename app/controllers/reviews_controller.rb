@@ -14,16 +14,15 @@ class ReviewsController < ApplicationController
       # POST /reservations/:reservation_id/review
     def create
       @reservation = Reservation.find(params[:reservation_id])
-      @review = @reservation.build_review(review_params)  # has_one なので build_review
+      @review = @reservation.build_review(review_params)
       @review.user = current_user
     
       if @review.save
-          # レビュー投稿と同時に予約は一覧から外す（レコード削除）
-        @reservation.destroy
+        @reservation.update(status: "reviewed")
         redirect_to reservations_path, notice: "レビューを投稿しました"
       else
         flash.now[:alert] = "入力に誤りがあります"
-        render :new
+        render 'reservations/approved'
       end
     end
     

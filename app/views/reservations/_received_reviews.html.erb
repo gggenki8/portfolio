@@ -1,0 +1,28 @@
+<div class="reviews-section">
+  <h2>受け取ったレビュー一覧</h2>
+
+  <% if @received_reviews.any? %>
+    <% @received_reviews.each do |review| %>
+      <% r = review.reservation %>
+      <div class="review-card">
+        <div class="review-header">
+          <h3 class="review-title"><%= r.skill_offering.title %></h3>
+          <p class="review-student">
+            生徒：<%= link_to r.user.name, user_path(r.user), class: "profile-link" %>
+          </p>
+        </div>
+        <div class="review-rating">
+          <%= "★" * review.rating %><%= "☆" * (5 - review.rating) %>
+        </div>
+        <div class="review-comment">
+          <p><%= simple_format(review.comment) %></p>
+        </div>
+        <div class="review-meta">
+          <small>投稿日：<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="no-reviews">まだレビューはありません。</p>
+  <% end %>
+</div>
