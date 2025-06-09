@@ -169,3 +169,94 @@
     padding: 20px 0;
   }
   
+  /* レビュー投稿フォーム全体 */
+.write-review-wrap {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 見出し */
+.write-review-wrap h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* フィールド共通 */
+.write-review-wrap .field {
+  margin-bottom: 1rem;
+}
+
+.write-review-wrap .field label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+/* セレクト ・ テキストエリア */
+.write-review-wrap .field select,
+.write-review-wrap .field textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.4;
+  transition: border-color 0.2s;
+}
+
+.write-review-wrap .field select:focus,
+.write-review-wrap .field textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* エラーメッセージ */
+.write-review-wrap .error-messages {
+  background-color: #ffe6e6;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.write-review-wrap .error-messages h4 {
+  font-size: 1rem;
+  color: #d9534f;
+  margin-bottom: 0.5rem;
+}
+
+.write-review-wrap .error-messages li {
+  color: #a94442;
+  margin-left: 1rem;
+  list-style: disc;
+}
+
+/* 送信ボタン */
+.btn-review-submit {
+  display: inline-block;
+  background-color: #3498db;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-review-submit:hover {
+  background-color: #2980b9;
+}
+
+.btn-review-submit:active {
+  transform: translateY(1px);
+}
