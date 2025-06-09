@@ -6,7 +6,7 @@ ja:
         password: "パスワード"
         password_confirmation: "パスワード（確認）"
         name: "名前"
-        user_type: "講師か生徒"
+        current_password: "変更前パスワード"
       skill_offering:
         title: "タイトル"
         details: "レッスン内容"

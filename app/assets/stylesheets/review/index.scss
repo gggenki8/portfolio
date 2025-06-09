@@ -101,3 +101,26 @@
     font-size: 0.85rem;
     color: #6b7280;
   }
+
+  .star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #ccc;              // ★（空）の色
+  
+    &:before {
+      content: "★★★★★";      // 背面グレー星
+    }
+  
+    &:after {
+      content: "★★★★★";      // 前面＝塗りつぶし星
+      position: absolute;
+      top: 0; left: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      width: var(--fill);     // ここがポイント！
+      color: #fc0;            // ★（塗り）の色
+    }
+  }
+  

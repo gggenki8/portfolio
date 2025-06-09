@@ -2,7 +2,7 @@
 <div class="container">
   <div class="edit-header">
     <h2>プロフィール編集</h2>
-    <%= link_to "ユーザー詳細", user_path(current_user), class: "user-edit" %>
+    <%= link_to "ユーザー詳細", edit_user_registration_path, class: "user-edit" %>
   </div>
 
   <%= form_with model: current_user,

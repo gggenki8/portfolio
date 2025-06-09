@@ -15,4 +15,3 @@ document.addEventListener("turbolinks:load", function() {
       reader.readAsDataURL(file);
     });
   });
-  
