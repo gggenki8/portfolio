@@ -1,213 +1,231 @@
 // 予約一覧画面
 /* ===== 全体ラッパー ===== */
 .dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px;
-    font-family: sans-serif;
-    background-color: #f5f5f5;
-  }
-  
-  /* ===== サマリーセクション ===== */
-  .dashboard-summary {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  
-  .summary-item {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .summary-item p:first-child {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 8px;
-  }
-  
-  .summary-item p:last-child {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* ===== ダッシュボードカード ===== */
-  .dashboard-card {
-    background-color: #fff;
-    padding: 24px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    margin-bottom: 32px;
-  }
-  
-  .dashboard-card h1 {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
-    color: #333;
-  }
-  
-  .dashboard-card h2 {
-    font-size: 1.25rem;
-    margin: 24px 0 12px;
-    color: #444;
-  }
-  
-  .dashboard-card h3 {
-    font-size: 1.1rem;
-    margin: 16px 0 8px;
-    color: #555;
-  }
-  
-  /* ===== テーブル関連 ===== */
-  .table-wrapper {
-    overflow-x: auto;
-    margin: 8px 0 16px;
-  }
-  
-  .table-wrapper table {
-    width: 100%;
-    min-width: 600px;
-    border-collapse: collapse;
-  }
-  
-  .table-wrapper th,
-  .table-wrapper td {
-    padding: 12px 16px;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 0.95rem;
-    color: #333;
-    text-align: left;
-  }
-  
-  .table-wrapper th {
-    background-color: #fafafa;
-    font-weight: 600;
-  }
-  
-  .table-wrapper tr:hover {
-    background-color: #f9f9f9;
-  }
-  
-  /* ===== ステータスバッジ ===== */
-  .status-badge {
-    display: inline-block;
-    padding: 4px 8px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border-radius: 999px;
-  }
-  
-  .status-badge--pending {
-    background-color: #fff4e5;
-    color: #d97706;
-  }
-  
-  .status-badge--approved {
-    background-color: #ecfdf5;
-    color: #059669;
-  }
-  
-  .status-badge--rejected {
-    background-color: #fce7f3;
-    color: #be185d;
-  }
-  
-  .status-badge--cancelled {
-    background-color: #f3f4f6;
-    color: #6b7280;
-  }
-  
-  /* ===== アクションセル ===== */
-  .status-cell .status-actions {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-  
-  /* ===== 詳細リンク ===== */
-  .detail-link {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #2563eb;
-    background-color: transparent;
-    border: 1px solid #2563eb;
-    border-radius: 4px;
-    padding: 4px 8px;
-    text-decoration: none;
-    transition: background-color 0.2s, color 0.2s;
-  }
-  
-  .detail-link:hover {
-    background-color: #2563eb;
-    color: #fff;
-  }
-  
-  /* ===== キャンセルボタン ===== */
-  .cancel-btn {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #ffffff;
-    background-color: #ef4444;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #dc2626;
-  }
-  
-  /* ===== ボタン共通スタイル ===== */
-  button,
-  .solink-btn,
-  .actions a {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #fff;
-    background-color: #3b82f6;
-    padding: 8px 14px;
-    border: none;
-    border-radius: 6px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  button:hover,
-  .solink-btn:hover,
-  .actions a:hover {
-    background-color: #2563eb;
-  }
-  
-  button:disabled {
-    background-color: #94a3b8;
-    cursor: default;
-  }
-  
-  button.approve-btn {
-    background-color: #10b981;
-  }
-  
-  button.approve-btn:hover {
-    background-color: #059669;
-  }
-  
-  button.reject-btn {
-    background-color: #ef4444;
-  }
-  
-  button.reject-btn:hover {
-    background-color: #dc2626;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* ===== サマリーセクション ===== */
+.dashboard-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summary-item {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.summary-item p:first-child {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.summary-item p:last-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ===== ダッシュボードカード ===== */
+.dashboard-card {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 32px;
+}
+
+.dashboard-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.dashboard-card h2 {
+  font-size: 1.25rem;
+  margin: 24px 0 12px;
+  color: #444;
+}
+
+.dashboard-card h3 {
+  font-size: 1.1rem;
+  margin: 16px 0 8px;
+  color: #555;
+}
+
+/* ===== テーブル関連 ===== */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 8px 0 16px;
+}
+
+.table-wrapper table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+  color: #333;
+  text-align: left;
+  white-space: nowrap; /* 折り返し防止 */
+}
+
+.table-wrapper th {
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+.table-wrapper tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* ===== 詳細／キャンセル操作 ===== */
+.table-wrapper td .detail-link,
+.table-wrapper td .cancel-btn,
+.table-wrapper td .btn-review {
+  margin-right: 8px;
+}
+
+/* ===== ステータスバッジ ===== */
+.status-badge { display: inline-block; margin-right: 8px;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.status-badge--pending {
+  background-color: #fff4e5;
+  color: #d97706;
+}
+
+.status-badge--approved {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.status-badge--rejected {
+  background-color: #fce7f3;
+  color: #be185d;
+}
+
+.status-badge--cancelled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ===== 詳細リンク ===== */
+.detail-link {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #2563eb;
+  background-color: transparent;
+  border: 1px solid #2563eb;
+  border-radius: 999px;
+  padding: 4px 8px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.detail-link:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* ===== キャンセルボタン ===== */
+.cancel-btn {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #ef4444;
+  padding: 6px 12px; /* 縦幅を少し小さく */
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-btn:hover {
+  background-color: #dc2626;
+}
+
+/* ===== レビューを書くボタン ===== */
+.btn-review {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background-color: #3b82f6;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-review:hover {
+  background-color: #2563eb;
+}
+
+/* ===== 共通ボタン ===== */
+button,
+.solink-btn,
+.actions a {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #3b82f6;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover,
+.solink-btn:hover,
+.actions a:hover {
+  background-color: #2563eb;
+}
+
+button:disabled {
+  background-color: #94a3b8;
+  cursor: default;
+}
+
+button.approve-btn {
+  background-color: #10b981;
+}
+
+button.approve-btn:hover {
+  background-color: #059669;
+}
+
+button.reject-btn {
+  background-color: #ef4444;
+}
+
+button.reject-btn:hover {
+  background-color: #dc2626;
+}
+
 /* ===== 提供中レッスン一覧カード ===== */
 .solist-grid {
   display: grid;
@@ -217,7 +235,7 @@
 }
 
 .solist-card {
-  background-color: #f9fafb; /* 薄い背景に修正 */
+  background-color: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 16px;
@@ -230,7 +248,8 @@
 .solist-card h3 {
   font-size: 1.1rem;
   margin-bottom: 8px;
-  color: #333; white-space: nowrap;
+  color: #333;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -289,35 +308,35 @@
   background-color: #ef4444;
   color: #fff;
 }
-  
-  /* ===== 空データ ===== */
-  .no-data {
-    padding: 20px 0;
-    text-align: center;
-    color: #6b7280;
-    font-size: 0.95rem;
+
+/* ===== 空データ ===== */
+.no-data {
+  padding: 20px 0;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* ===== プロフィールリンク ===== */
+a.profile-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+a.profile-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== レスポンシブ対応 ===== */
+@media screen and (max-width: 768px) {
+  .dashboard-summary {
+    flex-direction: column;
   }
-  
-  /* ===== プロフィールリンク ===== */
-  a.profile-link {
-    color: #3b82f6;
-    text-decoration: none;
+  .summary-item {
+    margin-bottom: 12px;
   }
-  
-  a.profile-link:hover {
-    text-decoration: underline;
+  .dashboard-container,
+  .dashboard-card {
+    padding: 16px;
   }
-  
-  /* ===== レスポンシブ対応 ===== */
-  @media screen and (max-width: 768px) {
-    .dashboard-summary {
-      flex-direction: column;
-    }
-    .summary-item {
-      margin-bottom: 12px;
-    }
-    .dashboard-container,
-    .dashboard-card {
-      padding: 16px;
-    }
-  }
+}

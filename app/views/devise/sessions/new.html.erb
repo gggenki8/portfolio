@@ -1,18 +1,28 @@
+<!-- ログインフォーム -->
+
 <div class="form-container">
+  <!-- Flash メッセージ -->
+  <% flash.each do |key, message| %>
+    <div class="flash <%= key %>" data-turbo-temporary>
+      <%= message %>
+    </div>
+  <% end %>
+
   <h2 class="form-title">ログイン</h2>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
     <div class="error-messages">
       <%= render "devise/shared/error_messages", resource: resource %>
     </div>
 
     <div class="field">
-      <%= f.label :email, "メールアドレス" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.label :email, "メールアドレス", class: "form-label" %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
     </div>
 
     <div class="field">
-      <%= f.label :password, "パスワード" %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+      <%= f.label :password, "パスワード", class: "form-label" %><br>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
     </div>
 
     <div class="actions">
@@ -24,3 +34,4 @@
     <%= render "devise/shared/links" %>
   </div>
 </div>
+

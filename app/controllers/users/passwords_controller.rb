@@ -7,9 +7,10 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # POST /resource/password
-  # def create
-  #   super
-  # end
+  def create
+    set_flash_message!(:notice, :send_paranoid_instructions)
+    redirect_to new_session_path(resource_name)
+  end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit

@@ -3,16 +3,24 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
 
+  def new
+    flash.discard(:alert)
+    super
+  end
+
+  def create
+    super
+  end
+
+  def destroy
+    super
+    flash.discard(:alert)
+  end
   protected
 
   def after_sign_in_path_for(resource)
-    edit_user_registration_path # ログイン後に編集画面へ
+    root_path
   end
-  
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
 
   # POST /resource/sign_in
   # def create

@@ -6,7 +6,7 @@
   <div class="approved-header">
     <h1>予約が承認されました！</h1>
     <p class="subtitle">
-      この画面でレッスン詳細とメッセージのやり取りができます。
+      この画面でレッスンの詳細確認とメッセージのやり取りができます。
     </p>
   </div>
 
@@ -49,40 +49,42 @@
     </div>
   <% end %>
 
-    <!-- 3. 生徒向け：ステータスが completed かつ生徒本人かつレビュー未作成であればフォームを表示 -->
-    <% if @reservation.completed? && @reservation.user_id == current_user.id && @reservation.review.blank? %>
-    <div class="write-review-wrap">
-      <h3>レビューを投稿する</h3>
-      <%= form_with(model: @review,
-                    url: reservation_review_path(@reservation),
-                    local: true) do |f| %>
-        <div class="field">
-          <%= f.label :rating, "評価" %><br>
-          <%= f.select :rating,
-                       (1..5).map { |n| ["★" * n, n] },
-                       prompt: "選択してください" %>
-        </div>
-        <div class="field">
-          <%= f.label :comment, "コメント" %><br>
-          <%= f.text_area :comment, rows: 4, placeholder: "感想を入力してください" %>
-        </div>
-        <div class="actions">
-          <%= f.submit "投稿する", class: "btn-review-submit" %>
-        </div>
-      <% end %>
-  
-      <% if @review && @review.errors.any? %>
-        <div class="error-messages">
-          <h4><%= pluralize(@review.errors.count, "エラー") %>があります：</h4>
-          <ul>
-            <% @review.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+<!-- 3. 生徒向け：ステータスが completed かつ生徒本人かつレビュー未作成であればフォームを表示 -->
+<% if @reservation.completed? && @reservation.user_id == current_user.id && @reservation.review.blank? %>
+  <div class="write-review-wrap">
+    <h3>レビューを投稿する</h3>
+
+    <%= form_with url: reservation_review_path(@reservation),
+                  scope: :review,
+                  local: true do |f| %>
+      <div class="field">
+        <%= f.label :rating, "評価" %><br>
+        <%= f.select :rating,
+                     (1..5).map { |n| ["★" * n, n] },
+                     prompt: "選択してください" %>
+      </div>
+      <div class="field">
+        <%= f.label :comment, "コメント" %><br>
+        <%= f.text_area :comment, rows: 4, placeholder: "感想を入力してください" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "投稿する", class: "btn-review-submit" %>
+      </div>
+    <% end %>
+
+    <% if @review && @review.errors.any? %>
+      <div class="error-messages">
+        <h4><%= pluralize(@review.errors.count, "エラー") %>があります：</h4>
+        <ul>
+          <% @review.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
 
   <!-- 3. メッセージ（簡易チャット）セクション -->
   <div class="message-section">
@@ -97,7 +99,7 @@
             <div class="message-item message--mine">
               <div class="message-header">
                 <span class="sender-label">講師(あなた)</span>
-                <span class="message-meta"><%= msg.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                <span class="message-meta"><%= msg.created_at.strftime("%Y/%m/%d %H:%M") %></span>
               </div>
               <div class="message-content">
                 <p><%= msg.content %></p>
@@ -115,7 +117,7 @@
                     生徒：<%= msg.user.name %>
                   <% end %>
                 </span>
-                <span class="message-meta"><%= msg.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                <span class="message-meta"><%= msg.created_at.strftime("%Y/%m/%d %H:%M") %></span>
               </div>
               <div class="message-content">
                 <p><%= msg.content %></p>

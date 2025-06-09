@@ -7,6 +7,11 @@ ja:
         password_confirmation: "パスワード（確認）"
         name: "名前"
         user_type: "講師か生徒"
+      skill_offering:
+        title: "タイトル"
+        details: "レッスン内容"
+        category_id: "カテゴリ"
+        available_time: "提供可能な時間帯"
   errors:
     messages:
       blank: "を入力してください"
