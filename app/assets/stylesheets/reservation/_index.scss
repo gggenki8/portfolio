@@ -340,3 +340,27 @@ a.profile-link:hover {
     padding: 16px;
   }
 }
+
+/* ×ボタン用セル */
+.td-close {
+  width: 2rem;
+  text-align: center;
+}
+
+/* ×ボタン */
+.btn-close {
+  display: inline-block;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #999;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-close:hover {
+  color: #e74c3c;
+}

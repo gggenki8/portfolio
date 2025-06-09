@@ -36,7 +36,7 @@ class ReservationsController < ApplicationController
   # 【生徒向け】仮予約完了画面
   def show
     if @reservation.completed?
-      redirect_to approved_reservation_path(@reservation) and returnend
+      redirect_to approved_reservation_path(@reservation) and return
     end
   end
 
@@ -54,7 +54,7 @@ class ReservationsController < ApplicationController
     # --- 生徒向けリスト（自分が予約したもの） ---
     @my_reservations = current_user.reservations
                                    .includes(:skill_offering, :review)  # ← ここで review をプリロード
-                                   .where.not(status: "reviewed")
+                                   .where(status: %w[pending approved completed])
                                    .order(created_at: :desc)
 
     # --- 自分の提供しているレッスンを取得 ---
@@ -84,21 +84,19 @@ class ReservationsController < ApplicationController
         flash[:alert] = "提供者用の不正なステータスです。"
       end
 
+  elsif @reservation.user_id == current_user.id
     # 生徒によるキャンセル
-    elsif @reservation.user_id == current_user.id
-      if params[:status] == "cancelled"
-        @reservation.cancelled!
-        flash[:alert] = "予約をキャンセルしました。"
-      else
-        flash[:alert] = "生徒用の不正なステータスです。"
-      end
-
+    if params[:status] == "cancelled"
+      @reservation.cancelled!
+      flash[:alert] = "予約をキャンセルしました。"
     else
-      # その他のユーザーは操作不可
-      flash[:alert] = "この予約を操作する権限がありません。"
+      flash[:alert] = "生徒用の不正なステータスです。"
     end
+  else
+    flash[:alert] = "この予約を操作する権限がありません。"
+  end
 
-    redirect_back(fallback_location: reservations_path)
+  redirect_back(fallback_location: reservations_path)
   end
 
 
@@ -126,25 +124,23 @@ class ReservationsController < ApplicationController
     redirect_to approved_reservation_path(@reservation), notice: "レッスンを完了とマークしました"
   end
 
-  # 予約キャンセル（生徒用）
   def cancel
     # 予約者本人かつ承認済み予約以外は不可
-    unless @reservation.user_id == current_user.id && @reservation.approved?
-      redirect_to reservation_path(@reservation), alert: "この操作はできません"
-      return
+    if @reservation.user_id == current_user.id && @reservation.approved?
+      @reservation.cancelled!
+      notice = "予約をキャンセルしました。"
+    else
+      notice = "この操作はできません"
     end
-
-    @reservation.update(status: :canceled)
-    redirect_to reservations_path, notice: "予約をキャンセルしました"
+    redirect_to reservations_path, alert: notice
   end
 
   private
 
   def set_reservation
-    @reservation = Reservation.find_by(id: params[:id])
-    unless @reservation
-      redirect_to reservation_path, alert: "該当する予約が見つかりません" unless @reservation
-    end
+    @reservation = Reservation.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to reservations_path, alert: "該当する予約が見つかりません"
   end
 
   def set_skill_offering

@@ -1,5 +1,4 @@
 <!-- 予約管理画面 -->
-
 <div class="dashboard-container">
   <!-- 1. サマリーセクション -->
   <div class="dashboard-summary">
@@ -46,14 +45,13 @@
               <td><%= r.reserved_time.strftime("%H:%M") %></td>
               <td>
                 <% if r.pending? %>
-                  <%= link_to '詳細を確認', reservation_path(r), class: 'detail-link' %>
-                  <%= button_to 'キャンセル', reservation_path(r, status: 'cancelled'),
+                <%= button_to 'キャンセル', cancel_reservation_path(r),
                                 method: :patch,
                                 data: { confirm: '本当にキャンセルしますか？' },
                                 class: 'cancel-btn' %>
                 <% elsif r.approved? %>
                   <%= link_to '詳細を確認', approved_reservation_path(r), class: 'detail-link' %>
-                  <%= button_to 'キャンセル', reservation_path(r, status: 'cancelled'),
+                  <%= button_to 'キャンセル', cancel_reservation_path(r),
                                 method: :patch,
                                 data: { confirm: '本当にキャンセルしますか？' },
                                 class: 'cancel-btn' %>
@@ -163,11 +161,6 @@
                     <%= link_to '詳細を確認',
                                 approved_reservation_path(res),
                                 class: 'detail-link' %>
-                    <%= button_to '予約をキャンセル',
-                                  reservation_path(res, status: 'cancelled'),
-                                  method: :patch,
-                                  data: { confirm: '本当にキャンセルしますか？' },
-                                  class: 'cancel-btn' %>
                   </td>
                 </tr>
               <% end %>
