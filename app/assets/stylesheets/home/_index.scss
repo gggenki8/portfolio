@@ -77,13 +77,30 @@
     color: #2c3e50;
     text-decoration: none;
   }
-  .offering-provider,
-  .offering-category,
-  .offering-time,
-  .offering-detail {
+
+  .offering-provider {
     font-size: 0.9rem;
     color: #555;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
+  
+  .provider-label {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .provider-name {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .provider-name:hover {
+    text-decoration: underline;
+  }
+  
   .offering-category {
     background: rgba(40,167,69,0.1);
     display: inline-block;

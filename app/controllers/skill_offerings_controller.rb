@@ -34,7 +34,10 @@ class SkillOfferingsController < ApplicationController
     end
   
     def show
-        @skill_offering = SkillOffering.find(params[:id])
+      @skill_offering   = SkillOffering.find(params[:id])
+      @received_reviews = @skill_offering.reviews.includes(reservation: :user)
+      avg = @received_reviews.average(:rating)
+      @average_rating   = avg.present? ? avg.to_f.round(1) : 0.0
     end
   
     def edit

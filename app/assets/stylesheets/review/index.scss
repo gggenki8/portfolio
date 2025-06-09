@@ -1,3 +1,25 @@
+/* 平均評価の表示 */
+.average-rating {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+  
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+  
+    .rating-score {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #b45309;
+    }
+  }
+  
   /* レビュー一覧全体のコンテナ */
   .reviews-section {
     margin-top: 40px;
@@ -28,7 +50,7 @@
     margin-bottom: 24px;
   }
   
-  /* レビューヘッダー：タイトルトと講師名 */
+  /* レビューヘッダー：タイトルと生徒名 */
   .review-header {
     display: flex;
     flex-direction: column;
@@ -43,18 +65,25 @@
     color: #111827;
   }
   
-  /* 講師名 */
-  .review-instructor {
+  /* 生徒名リンク */
+  .review-student {
     font-size: 0.9rem;
     color: #374151;
     margin-top: 4px;
+  
+    .profile-link {
+      color: #2563eb;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
   
   /* 星評価（大きめのサイズ） */
   .review-rating {
     margin-bottom: 16px;
-  }
-  .star-rating-large {
     font-size: 1.125rem;
     color: #f59e0b; /* オレンジ色 */
   }
@@ -72,21 +101,3 @@
     font-size: 0.85rem;
     color: #6b7280;
   }
-  /* 詳細リンク */
-.detail-link {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: #2563eb;
-    background-color: transparent;
-    padding: 4px 8px;
-    text-decoration: none;
-    border: 1px solid #2563eb;
-    border-radius: 4px;
-    margin-right: 8px;
-    transition: background-color 0.2s, color 0.2s;
-  }
-  .detail-link:hover {
-    background-color: #2563eb;
-    color: #ffffff;
-  }
-  

@@ -1,0 +1,132 @@
+//スキル編集画面
+.lesson-form-container {
+    max-width: 980px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 50px 60px;
+    border: 1px solid #e1e5ea;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #e1e5ea;
+      padding-bottom: 10px;
+    }
+  
+    .form-group {
+      margin-bottom: 24px;
+  
+      label {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 8px;
+      }
+  
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 1rem;
+        border: 1px solid #ccd3dc;
+        border-radius: 8px;
+        background: #fdfdfd;
+        transition: all 0.3s ease;
+  
+        &:focus {
+          border-color: #667eea;
+          background-color: #fff;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+          outline: none;
+        }
+      }
+  
+      small {
+        font-size: 0.9rem;
+        color: #777;
+        margin-top: 6px;
+        display: block;
+      }
+    }
+  
+    .form-actions {
+      margin-top: 30px;
+  
+      .btn-primary {
+        width: 100%;
+        padding: 14px 0;
+        background: #667eea;
+        color: #fff;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #5a6fd8;
+        }
+      }
+    }
+  
+    .btn-secondary {
+      display: block;
+      margin: 20px auto 0;
+      text-align: center;
+      padding: 10px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #555;
+      background: #e4e7eb;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #d3d7dd;
+      }
+    }
+  
+    .errors {
+      background: #ffecec;
+      border-left: 4px solid #e74c3c;
+      padding: 16px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+  
+      h2 {
+        color: #c0392b;
+        font-size: 1rem;
+        margin-bottom: 10px;
+      }
+  
+      ul {
+        margin: 0;
+        padding-left: 1.2em;
+        color: #c0392b;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      padding: 30px 20px;
+  
+      h1 {
+        font-size: 1.4rem;
+      }
+  
+      .btn-primary,
+      .btn-secondary {
+        font-size: 1rem;
+        padding: 12px 0;
+      }
+    }
+  }
+  

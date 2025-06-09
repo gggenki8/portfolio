@@ -1,5 +1,15 @@
+<main class="reviews-page container">
+<div class="average-rating">
+  <h2>レッスンの平均評価</h2>
+  <p class="rating-score">
+    <%= @average_rating %> / 5.0
+    <%# ★を四捨五入した個数だけ表示 %>
+    <%= "★" * @average_rating.round %><%= "☆" * (5 - @average_rating.round) %>
+  </p>
+</div>
+
 <div class="reviews-section">
-  <h2>受け取ったレビュー一覧</h2>
+  <h2>受け取ったレビュー</h2>
 
   <% if @received_reviews.any? %>
     <% @received_reviews.each do |review| %>
@@ -26,3 +36,4 @@
     <p class="no-reviews">まだレビューはありません。</p>
   <% end %>
 </div>
+</main>
