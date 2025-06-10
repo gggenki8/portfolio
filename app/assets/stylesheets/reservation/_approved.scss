@@ -104,15 +104,15 @@
   }
   
   .message--mine {
-    align-items: flex-end; /* 右寄せ */
+    align-items: flex-end; 
   }
   
   .message--others {
-    align-items: flex-start; /* 左寄せ */
+    align-items: flex-start;
   }
   
   .message-content {
-    background-color: #e0f2fe; /* 薄い青 */
+    background-color: #e0f2fe;
     padding: 10px 14px;
     border-radius: 8px;
     font-size: 0.9rem;
@@ -122,7 +122,7 @@
   }
   
   .message--mine .message-content {
-    background-color: #dcfce7; /* 薄い緑 */
+    background-color: #dcfce7;
     color: #065f46;
   }
   
@@ -147,7 +147,7 @@
   }
   
   .btn-send {
-    background-color: #10b981; /* 緑 */
+    background-color: #10b981;
     color: #ffffff;
     padding: 8px 14px;
     border: none;

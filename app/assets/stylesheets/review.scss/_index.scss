@@ -85,7 +85,7 @@
   .review-rating {
     margin-bottom: 16px;
     font-size: 1.125rem;
-    color: #f59e0b; /* オレンジ色 */
+    color: #f59e0b; 
   }
   
   /* コメント */
@@ -107,20 +107,20 @@
     display: inline-block;
     font-size: 1.5rem;
     line-height: 1;
-    color: #ccc;              // ★（空）の色
+    color: #ccc;
   
     &:before {
-      content: "★★★★★";      // 背面グレー星
+      content: "★★★★★";
     }
   
     &:after {
-      content: "★★★★★";      // 前面＝塗りつぶし星
+      content: "★★★★★"; 
       position: absolute;
       top: 0; left: 0;
       white-space: nowrap;
       overflow: hidden;
-      width: var(--fill);     // ここがポイント！
-      color: #fc0;            // ★（塗り）の色
+      width: var(--fill);
+      color: #fc0; 
     }
   }
   

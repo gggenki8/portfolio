@@ -1,8 +1,8 @@
 /* 仮予約完了画面用 SCSS */
 .reservation-complete {
     max-width: 480px;
-    margin: 80px auto 20px; /* 上に移動して余白を増加 */
-    padding: 0 16px 40px;   /* 下側のパディングを追加 */
+    margin: 80px auto 20px; 
+    padding: 0 16px 40px;   
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -62,8 +62,8 @@
     }
   
     @media (max-width: 600px) {
-      margin: 60px auto 10px; /* モバイル時の上余白を少し調整 */
-      padding: 0 12px 32px;    /* モバイル時の下パディングを若干小さめに */
+      margin: 60px auto 10px;
+      padding: 0 12px 32px;
   
       .reservation-summary {
         padding: 14px;

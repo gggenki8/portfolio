@@ -1,6 +1,4 @@
 // プロフィール編集画面
-/* プロフィール編集画面用 SCSS */
-
 .container {
   max-width: 600px;
   margin: 40px auto;
@@ -143,14 +141,14 @@
   }
   
   .new-image-preview {
-    display: none;      // JS で block に切り替えます
+    display: none;
     margin-bottom: 16px;
-    .profile-image {    // 既存の profile-image と同じサイズ感
+    .profile-image { 
       width: 120px;
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #667eea; // 青枠をつけて視認性アップ
+      border: 2px solid #667eea;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
   }
