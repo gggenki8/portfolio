@@ -74,3 +74,18 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+#RSpec
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner-active_record'
+  gem 'shoulda-matchers', '~> 5.0'
+end
+
+

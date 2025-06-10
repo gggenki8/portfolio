@@ -19,6 +19,8 @@ class Reservation < ApplicationRecord
 
   validates :reserved_date, presence: true
   validates :reserved_time, presence: true
+  validates :message,       presence: true
+  validates :status,        presence: true
 
   # 講師が「完了」ボタンを押せるか
   def can_mark_completed?
