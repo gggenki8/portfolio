@@ -1,0 +1,242 @@
+// プロフィール編集画面
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e5e9;
+  padding: 30px;
+
+  /* ヘッダー */
+  .edit-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #333;
+      margin: 0;
+    }
+
+    .user-edit {
+      font-size: 0.9rem;
+      color: #667eea;
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #667eea;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+
+      &:hover {
+        background: #667eea;
+        color: #fff;
+      }
+    }
+  }
+
+  /* フォーム全体 */
+  form {
+    .form-group {
+      margin-bottom: 20px;
+
+      &.profile-image-group {
+        display: flex;
+        flex-direction: column;
+        
+        .current-image {
+          margin-bottom: 10px;
+
+          .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e1e5e9;
+          }
+        }
+
+        .image-upload-section {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          
+          .file-input-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: #f0f4ff;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+
+            .file-input {
+              opacity: 0;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              height: 100%;
+              cursor: pointer;
+            }
+
+            .file-input-label {
+              font-size: 1rem;
+              color: #667eea;
+              pointer-events: none;
+            }
+
+            &:hover {
+              background: #e6ecff;
+              border-color: #5a6fd8;
+            }
+          }
+
+          .upload-hint {
+            font-size: 0.85rem;
+            color: #777;
+          }
+        }
+      }
+
+      .form-label {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 6px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 1rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 8px;
+        background: #fafafa;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #667eea;
+          background: #fff;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+      }
+    }
+  }
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e1e5e9;
+    margin-bottom: 10px;
+  }
+  
+  .new-image-preview {
+    display: none;
+    margin-bottom: 16px;
+    .profile-image { 
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #667eea;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  }
+  
+
+  /* ボタン群 */
+  .btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+
+    .btn {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: #fff;
+
+      &:hover {
+        background: #5a6fd8;
+      }
+    }
+
+    .btn-secondary {
+      background: #e1e5e9;
+      color: #555;
+
+      &:hover {
+        background: #d1d6dc;
+      }
+    }
+  }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 480px) {
+  .container {
+    margin: 30px 10px;
+    padding: 20px 15px;
+
+    .edit-header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .user-edit {
+        align-self: flex-end;
+        font-size: 0.85rem;
+        padding: 5px 10px;
+      }
+    }
+
+    form {
+      .form-group {
+        margin-bottom: 18px;
+
+        .form-control {
+          padding: 8px 12px;
+          font-size: 0.95rem;
+        }
+
+        .upload-hint {
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    .btn-group {
+      flex-direction: column;
+
+      .btn {
+        font-size: 0.95rem;
+        padding: 9px 0;
+      }
+    }
+  }
+}

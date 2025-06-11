@@ -1,0 +1,138 @@
+// 提供中レッスン一覧用 SCSS 
+.solist-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 16px;
+  
+    .solist-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+  
+    .solist-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #e1e5e9;
+      border-radius: 6px;
+      overflow: hidden;
+  
+      thead {
+        background: #f5f5f5;
+  
+        th {
+          padding: 12px 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #555;
+          text-align: left;
+          border-bottom: 1px solid #e1e5e9;
+        }
+      }
+  
+      tbody {
+        tr {
+          &:hover {
+            background: #fcfcfc;
+          }
+  
+          td {
+            padding: 12px 8px;
+            font-size: 0.95rem;
+            color: #444;
+            border-bottom: 1px solid #e1e5e9;
+            vertical-align: middle;
+          }
+  
+          /* 最終行のボーダーを消す */
+          &:last-child td {
+            border-bottom: none;
+          }
+        }
+      }
+  
+      /* 列幅の調整 */
+      .solist-col-title   { width: 40%; }
+      .solist-col-cat     { width: 25%; }
+      .solist-col-time    { width: 25%; }
+      .solist-col-actions { width: 10%; }
+    }
+  
+    .solist-actions-cell {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+  
+    /* ボタン／リンクの共通スタイル */
+    .solist-btn-detail,
+    .solist-btn-edit,
+    .solist-btn-delete {
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 4px;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border: none;
+    }
+  
+    .solist-btn-detail {
+      background: #667eea;
+      color: #fff;
+  
+      &:hover {
+        background: #5a6fd8;
+      }
+    }
+  
+    .solist-btn-edit {
+      background: #4caf50;
+      color: #fff;
+  
+      &:hover {
+        background: #449d48;
+      }
+    }
+  
+    .solist-btn-delete {
+      background: #e53e3e;
+      color: #fff;
+  
+      &:hover {
+        background: #c53030;
+      }
+    }
+  
+    @media (max-width: 600px) {
+      padding: 0 8px;
+  
+      .solist-title {
+        font-size: 1.5rem;
+        margin-bottom: 16px;
+      }
+  
+      .solist-table thead th,
+      .solist-table tbody td {
+        padding: 10px 6px;
+        font-size: 0.9rem;
+      }
+  
+      .solist-actions-cell {
+        gap: 4px;
+      }
+  
+      .solist-btn-detail,
+      .solist-btn-edit,
+      .solist-btn-delete {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  

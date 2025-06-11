@@ -1,0 +1,209 @@
+// ユーザー情報編集画面用
+.user-detail-edit-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+    padding: 30px;
+  
+    // ヘッダー部分: タイトルとリンクを横並びに配置
+    .user-detail-edit-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+  
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+      }
+  
+      .user-detail-edit-profile-link {
+        font-size: 0.9rem;
+        color: #667eea;
+        text-decoration: none;
+        padding: 6px 12px;
+        border: 1px solid #667eea;
+        border-radius: 6px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+  
+        &:hover {
+          background: #667eea;
+          color: #fff;
+        }
+      }
+    }
+  
+    // フォームエリア
+    .user-detail-edit-form {
+      // 共通フォームグループ
+      .user-detail-edit-form-group {
+        margin-bottom: 20px;
+  
+        .user-detail-edit-form-label {
+          display: block;
+          font-size: 1rem;
+          font-weight: 600;
+          color: #555;
+          margin-bottom: 6px;
+        }
+  
+        .user-detail-edit-form-control {
+          width: 100%;
+          padding: 10px 14px;
+          font-size: 1rem;
+          border: 2px solid #e1e5e9;
+          border-radius: 8px;
+          background: #fafafa;
+          transition: border-color 0.3s ease;
+  
+          &:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+          }
+        }
+  
+        // パスワードヒントなどのメッセージ
+        .user-detail-edit-hint {
+          font-size: 0.85rem;
+          color: #777;
+          margin-top: 4px;
+        }
+      }
+  
+      // 送信ボタン・戻るリンクなど
+      .user-detail-edit-btn-group {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+  
+        .user-detail-edit-btn {
+          flex: 1;
+          text-align: center;
+          padding: 10px 0;
+          font-size: 1rem;
+          font-weight: 600;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          text-decoration: none;
+        }
+  
+        .user-detail-edit-btn-primary {
+          background: #667eea;
+          color: #fff;
+  
+          &:hover {
+            background: #5a6fd8;
+          }
+        }
+  
+        .user-detail-edit-btn-secondary {
+          background: #e1e5e9;
+          color: #555;
+  
+          &:hover {
+            background: #d1d6dc;
+          }
+        }
+      }
+    }
+  
+    // アカウント削除ボタン
+    .user-detail-delete-section {
+      margin-top: 40px;
+  
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+      }
+  
+      .user-detail-delete-btn {
+        background: #e53e3e;
+        color: #fff;
+        padding: 10px 0;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        text-align: center;
+  
+        &:hover {
+          background: #c53030;
+        }
+      }
+    }
+  
+    // レスポンシブ対応
+    @media (max-width: 480px) {
+      margin: 30px 10px;
+      padding: 20px 15px;
+  
+      .user-detail-edit-header {
+        flex-direction: column;
+        align-items: flex-start;
+  
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+  
+        .user-detail-edit-profile-link {
+          align-self: flex-end;
+          font-size: 0.85rem;
+          padding: 5px 10px;
+        }
+      }
+  
+      .user-detail-edit-form {
+        .user-detail-edit-form-group {
+          margin-bottom: 18px;
+  
+          .user-detail-edit-form-control {
+            padding: 8px 12px;
+            font-size: 0.95rem;
+          }
+  
+          .user-detail-edit-hint {
+            font-size: 0.8rem;
+          }
+        }
+  
+        .user-detail-edit-btn-group {
+          flex-direction: column;
+  
+          .user-detail-edit-btn {
+            font-size: 0.95rem;
+            padding: 9px 0;
+          }
+        }
+      }
+  
+      .user-detail-delete-section {
+        margin-top: 30px;
+  
+        h3 {
+          font-size: 1.1rem;
+          margin-bottom: 10px;
+        }
+  
+        .user-detail-delete-btn {
+          font-size: 0.95rem;
+          padding: 8px 0;
+        }
+      }
+    }
+}

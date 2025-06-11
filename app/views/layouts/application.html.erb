@@ -6,10 +6,56 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%#= javascript_importmap_tags %>
+
+
   </head>
+
+  <body>
+    <header class = "header">
+      <div class = "site-info">
+        <h2><%= link_to "Sukima Share", root_path, class: "site-name" %></h2>
+        <p class = "site-tagline" >隙間時間を有効に使おう</p>
+      </div>
+      <nav class = "auth-section">
+        <ul>
+          <% if user_signed_in? %>
+          <!-- ログイン時のメニュー -->
+            <li><%= link_to "レッスンを提供", new_skill_offering_path, class: "teach-btn" %></li>
+            <li><%= link_to current_user.name, user_path(current_user), class: "profile-btn" %></li>
+            <li><%= link_to "予約管理", reservations_path, class: "reservation-btn" %></li>
+            <li><%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn" %></li>
+          <% else %>
+          <!-- 未ログイン時のメニュー -->
+            <li><%= link_to "レッスンを提供", new_user_session_path, class: "teach-btn" %></li>
+            <li><%= link_to "ログイン", new_user_session_path, class: "login-btn" %></li>
+            <li><%= link_to "新規登録", new_user_registration_path, class: "signup-btn" %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </header>
+  </body>
 
   <body>
     <%= yield %>
   </body>
+
+  <body>
+  <footer class="app-footer">
+    <div class="app-footer__inner">
+      <div class="app-footer__title">
+        <h3>Sukima Share</h3>
+      </div>
+      <div class="app-footer__description">
+        隙間時間を活用してスキルを学び、教えるプラットフォーム。<br>
+        あなたの知識と経験を共有し、新しいスキルを身につけましょう。
+      </div>
+      <div class="app-footer__contact">
+        <%= link_to "お問い合わせはこちら", new_contact_path, class: "app-footer__btn" %>
+      </div>
+    </div>
+  </footer>
+</body>
+
 </html>

@@ -1,0 +1,126 @@
+/* 平均評価の表示 */
+.average-rating {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #fef3c7;
+    border: 1px solid #fcd34d;
+    border-radius: 8px;
+  
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 8px;
+    }
+  
+    .rating-score {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #b45309;
+    }
+  }
+  
+  /* レビュー一覧全体のコンテナ */
+  .reviews-section {
+    margin-top: 40px;
+    padding: 0 16px;
+  }
+  
+  /* レビュー一覧の見出し */
+  .reviews-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #111827;
+  }
+  
+  /* レビューがないときのメッセージ */
+  .no-reviews {
+    font-size: 1rem;
+    color: #6b7280;
+    font-style: italic;
+  }
+  
+  /* 個々のレビューカード */
+  .review-card {
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+  
+  /* レビューヘッダー：タイトルと生徒名 */
+  .review-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+  
+  /* レッスンタイトル */
+  .review-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+  
+  /* 生徒名リンク */
+  .review-student {
+    font-size: 0.9rem;
+    color: #374151;
+    margin-top: 4px;
+  
+    .profile-link {
+      color: #2563eb;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  /* 星評価（大きめのサイズ） */
+  .review-rating {
+    margin-bottom: 16px;
+    font-size: 1.125rem;
+    color: #f59e0b; 
+  }
+  
+  /* コメント */
+  .review-comment p {
+    font-size: 1rem;
+    color: #1f2937;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+  
+  /* 投稿日時 */
+  .review-meta small {
+    font-size: 0.85rem;
+    color: #6b7280;
+  }
+
+  .star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #ccc;
+  
+    &:before {
+      content: "★★★★★";
+    }
+  
+    &:after {
+      content: "★★★★★"; 
+      position: absolute;
+      top: 0; left: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      width: var(--fill);
+      color: #fc0; 
+    }
+  }
+  

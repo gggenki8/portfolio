@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        name: "名前"
+        current_password: "変更前パスワード"
+      skill_offering:
+        title: "タイトル"
+        details: "レッスン内容"
+        category_id: "カテゴリ"
+        available_time: "提供可能な時間帯"
+  errors:
+    messages:
+      blank: "を入力してください"
+      too_short: "は%{count}文字以上で入力してください"
+      taken: "はすでに存在します"
+      confirmation: "が一致しません"
+      invalid: "が正しくありません"

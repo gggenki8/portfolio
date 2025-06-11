@@ -1,0 +1,30 @@
+<!-- ログインフォーム -->
+
+<div class="form-container">
+  <h2 class="form-title">ログイン</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login-form" }) do |f| %>
+    <div class="error-messages">
+      <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, "メールアドレス", class: "form-label" %><br>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-input" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "パスワード", class: "form-label" %><br>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-input" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "ログイン", class: "submit-btn" %>
+    </div>
+  <% end %>
+
+  <div class="shared-links">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+

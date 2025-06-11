@@ -1,0 +1,153 @@
+//　投稿編集画面
+.edit-post-form {
+  max-width: 980px; // より横長に
+  margin: 60px auto;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e4e8;
+  padding: 50px 60px;
+
+  h1 {
+    font-size: 1.6rem; // 少し控えめに
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid #e1e5ea;
+    padding-bottom: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+
+    label {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1rem;
+      border: 1px solid #ccd3dc;
+      border-radius: 8px;
+      background: #fdfdfd;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: #667eea;
+        background-color: #fff;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+        outline: none;
+      }
+    }
+
+    small {
+      display: block;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 6px;
+    }
+  }
+
+  .submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    background: #667eea;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #5a6fd8;
+    }
+  }
+
+  .bottom-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    .btn-secondary,
+    .btn-danger {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary {
+      background: #e4e7eb;
+      color: #555;
+
+      &:hover {
+        background: #d3d7dd;
+      }
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+      color: #fff;
+
+      &:hover {
+        background: #c0392b;
+      }
+    }
+  }
+
+  .errors {
+    background: #ffecec;
+    border-left: 4px solid #e74c3c;
+    padding: 16px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    h2 {
+      color: #c0392b;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.2em;
+      color: #c0392b;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+
+    .bottom-actions {
+      flex-direction: column;
+
+      .btn-secondary,
+      .btn-danger {
+        font-size: 0.95rem;
+        padding: 10px 0;
+      }
+    }
+
+    .submit-button {
+      font-size: 1rem;
+    }
+  }
+}

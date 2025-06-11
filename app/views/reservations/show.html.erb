@@ -1,0 +1,37 @@
+<!-- 仮予約完了画面 -->
+
+<main class="reservation-complete">
+  <h1>仮予約の受付が完了しました</h1>
+
+  <section class="reservation-summary">
+    <h2>仮予約内容</h2>
+    <p>
+      <strong>レッスン名：</strong>
+      <%= @reservation.skill_offering.title %>
+    </p>
+    <p>
+      <strong>希望日：</strong>
+      <%= @reservation.reserved_date.strftime("%Y/%m/%d") %>
+      <strong>希望時間：</strong>
+      <%= @reservation.reserved_time.strftime("%H:%M") %>
+    </p>
+    <% if @reservation.message.present? %>
+      <p>
+        <strong>メッセージ：</strong><br>
+        <%= simple_format(@reservation.message) %>
+      </p>
+    <% end %>
+    <p>
+      <strong>予約ステータス：</strong>
+      <% if @reservation.pending? %>
+        承認待ち
+      <% elsif @reservation.approved? %>
+        承認済み
+      <% elsif @reservation.rejected? %>
+        却下されました
+      <% end %>
+    </p>
+  </section>
+
+  <%= link_to "トップへ戻る", root_path, class: "btn btn-secondary" %>
+</main>

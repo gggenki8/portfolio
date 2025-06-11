@@ -1,0 +1,54 @@
+<!-- レッスンの詳細画面 -->
+
+<main class="off-wrap">
+  <!-- レッスン名 -->
+  <h1 class="off-title"><%= @skill_offering.title %></h1>
+
+  <!-- 講師情報 -->
+  <section class="off-teacher">
+    <h2>講師情報</h2>
+    <div class="teacher-info">
+      <% if @skill_offering.user.image.attached? %>
+        <%= image_tag @skill_offering.user.image.variant(resize_to_limit: [100, 100]), class: "teacher-avatar" %>
+      <% else %>
+        <div class="teacher-avatar-placeholder">No Image</div>
+      <% end %>
+      <p class="teacher-name"><%= @skill_offering.user.name %></p>
+      <%= link_to "講師のプロフィールを見る", user_path(@skill_offering.user), class: "teacher-profile-link" %>
+    </div>
+  </section>
+
+  <!-- レッスン概要 -->
+  <section class="off-info">
+    <h2>レッスン概要</h2>
+    <p class="off-category">
+      <strong>カテゴリ：</strong>
+      <%= @skill_offering.category.name %>
+    </p>
+    <p class="off-available">
+      <strong>提供可能時間：</strong>
+      <%= @skill_offering.available_time %>
+    </p>
+  </section>
+
+  <!-- 詳細説明 -->
+  <section class="off-desc">
+    <h2>詳細説明</h2>
+    <p><%= simple_format(@skill_offering.details) %></p>
+  </section>
+
+  <!-- 予約ボタン -->
+  <% if current_user.nil? || current_user != @skill_offering.user %>
+    <section class="off-reserve">
+      <%= link_to "このレッスンを予約する",
+                new_reservation_path(skill_offering_id: @skill_offering.id),
+                class: "res-btn" %>
+    </section>
+  <% end %>
+</main>
+
+<%= render 'reservations/received_reviews',
+            received_reviews: @received_reviews,
+            average_rating:  @average_rating %>
+
+

@@ -1,0 +1,189 @@
+// レッスン詳細画面用 SCSS
+.off-wrap {
+    padding: 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e1e5e9;
+  }
+  
+  /* レッスンタイトル */
+  .off-wrap .off-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* 講師情報セクション */
+  .off-wrap .off-teacher {
+    margin-bottom: 2rem;
+  }
+  
+  .off-wrap .off-teacher h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .off-wrap .teacher-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .off-wrap .teacher-avatar,
+  .off-wrap .teacher-avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #fff;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+  
+  .off-wrap .teacher-avatar {
+    object-fit: cover;
+  }
+  
+  .off-wrap .teacher-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+  }
+  
+  .off-wrap .teacher-profile-link {
+    margin-left: auto;
+    font-size: 0.95rem;
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .off-wrap .teacher-profile-link:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+  }
+  
+  /* レッスン概要セクション */
+  .off-wrap .off-info {
+    margin-bottom: 2rem;
+  }
+  
+  .off-wrap .off-info h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .off-wrap .off-info p {
+    font-size: 1rem;
+    color: #333;
+    margin: 0.5rem 0;
+  }
+  
+  /* 詳細説明セクション */
+  .off-wrap .off-desc {
+    margin-bottom: 2rem;
+  }
+  
+  .off-wrap .off-desc h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  .off-wrap .off-desc p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+  
+  /* 予約ボタン */
+  .off-wrap .res-btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 2rem auto 0 auto;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #667eea;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .off-wrap .res-btn:hover {
+    background: #5a6fd8;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 600px) {
+    .off-wrap {
+      padding: 15px;
+    }
+  
+    .off-wrap .off-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    .off-wrap .teacher-info {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .off-wrap .teacher-avatar,
+    .off-wrap .teacher-avatar-placeholder {
+      width: 80px;
+      height: 80px;
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .off-wrap .teacher-name {
+      font-size: 1.1rem;
+      text-align: center;
+    }
+  
+    .off-wrap .teacher-profile-link {
+      margin: 10px 0 0 0;
+      font-size: 0.9rem;
+    }
+  
+    .off-wrap .off-info h2,
+    .off-wrap .off-desc h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+  
+    .off-wrap .off-info p,
+    .off-wrap .off-desc p {
+      font-size: 0.95rem;
+    }
+  
+    .off-wrap .res-btn {
+      max-width: 100%;
+      padding: 10px 0;
+      font-size: 1rem;
+    }
+  }
+  

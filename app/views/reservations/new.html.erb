@@ -1,0 +1,41 @@
+<!-- 仮予約画面画面 -->
+
+<div class="reservation-new">
+  <h1>仮予約フォーム</h1>
+
+  <%= form_with model: @reservation, url: reservations_path, local: true do |f| %>
+    <%= f.hidden_field :skill_offering_id, value: @skill_offering.id %>
+
+    <div class="lesson-summary">
+      <strong>レッスン名：</strong><%= @skill_offering.title %><br>
+      <strong>カテゴリ：</strong><%= @skill_offering.category.name %><br>
+      <strong>提供可能時間：</strong><%= @skill_offering.available_time %><br>
+      <p><%= truncate(@skill_offering.details, length: 200) %></p>
+    </div>
+
+    <div class="field">
+      <%= f.label :reserved_date, "希望日" %>
+      <%= f.date_field :reserved_date, required: true %>
+      <% if @reservation.errors[:reserved_date].any? %>
+        <div class="error"><%= @reservation.errors[:reserved_date].first %></div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :reserved_time, "希望時間（例: 10:00）" %>
+      <%= f.time_field :reserved_time, required: true %>
+      <% if @reservation.errors[:reserved_time].any? %>
+        <div class="error"><%= @reservation.errors[:reserved_time].first %></div>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :message, "メッセージ" %>
+      <%= f.text_area :message, rows: 4, placeholder: "講師へのリクエストや質問があればご記入ください。" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "仮予約を送信する", class: "btn" %>
+    </div>
+  <% end %>
+</div>
