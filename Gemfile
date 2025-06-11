@@ -12,7 +12,6 @@ gem "rails-i18n"
 gem "bigdecimal"
 gem "mutex_m"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
-gem "bootsnap", require: false
 gem "sassc-rails"
 gem "importmap-rails"
 gem "image_processing", '~> 1.2'
@@ -22,9 +21,10 @@ group :production do
   gem "pg"
 end
 
-# 開発・テスト環境用 SQLite
+# 開発・テスト環境用 SQLite と開発用gem
 group :development, :test do
   gem "sqlite3", "~> 1.4"
+  gem "bootsnap", require: false
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "rspec-rails", '~> 5.0'
   gem "factory_bot_rails"
@@ -43,4 +43,3 @@ group :test do
   gem "database_cleaner-active_record"
   gem "shoulda-matchers", '~> 5.0'
 end
-
