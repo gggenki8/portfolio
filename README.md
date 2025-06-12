@@ -1,24 +1,115 @@
-# README
+# Sukima Share - 隙間時間を有効活用しよう
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##  1. サービス概要
 
-Things you may want to cover:
 
-* Ruby version
+隙間時間を有効活用してスキルシェアできるアプリケーション。  
+ユーザー（講師/生徒）が登録・予約・レビューを行えます。
 
-* System dependencies
+## 2. サービス画像
 
-* Configuration
+<img width="931" alt="スクリーンショット 2025-06-12 20 35 55" src="https://github.com/user-attachments/assets/e4f0b763-0d99-40ff-8dcc-944ee83dba3d" />
 
-* Database creation
 
-* Database initialization
+## 3. サービスのURL
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+https://gentle-ridge-44077-25ea9a519d8b.herokuapp.com/
 
-* Deployment instructions
+## 4. サービスの概要
 
-* ...
+
+“Sukima Share” は、ユーザーが講師又は生徒となってスキマ時間を活用して
+オンラインレッスンを予約・提供できるスキルシェアプラットフォームです。
+
+生徒は興味のあるレッスンを検索して予約。
+
+講師は得意分野のレッスンを登録し、時間カテゴリを指定。
+
+レビュー機能で信頼度を可視化。
+
+## 5. 開発背景
+
+日頃、仕事や予定のない時にダラダラ過ごしてしまい、時間がもったいないと感じていました。
+しかし、自分一人ではなかなかやる気が起こらなくても、誰かに教えてもらったり、新しい学びの機会が与えられれば、
+隙間時間を有効に活用できるのではないかと考え、本アプリの開発に至りました。
+
+## 6. 機能
+
+
+ホーム画面: 新規レッスン一覧の表示
+
+ログイン機能: 新規作成、ログイン、プロフィール編集、詳細編集画面
+
+レッスン検索: ジャンル、講師名、時間カテゴリでフィルタリング
+
+レッスン詳細: レッスン内容、予約可能時間帯、レビュー表示
+
+予約機能: 生徒によるレッスン予約／キャンセル
+
+予約一覧: 講師・生徒それぞれの予約状況一覧
+
+レビュー機能: ⭐️評価とコメント投稿
+
+プロフィール管理: ユーザー情報編集／スキルタグ設定
+
+
+## 7. 主な使用技術
+
+フロントエンド: 
+
+HTML, CSS (Tailwind), JavaScript (Hotwire/Turbo, Stimulus)
+
+バックエンド: 
+
+Ruby on Rails 7, PostgreSQL, Devise
+
+開発環境: 
+
+SQLite3 (開発・テスト), RSpec, Git/GitHub
+
+
+## 8. ER図
+
+```txt
+┌──────────────┐       ┌───────────────────┐       ┌──────────────┐
+│   users      │1     *│  skill_offerings  │1     *│ reservations │
+├──────────────┤──────▶├───────────────────┤──────▶├──────────────┤
+│ id           │       │ id                │       │ id           │
+│ email        │       │ user_id           │       │ user_id      │
+│ encrypted_pw │       │ category_id       │       │ skill_offering_id │
+│ name         │       │ title             │       │ reserved_date│
+│ image        │       │ available_time    │       │ reserved_time│
+│ profile      │       │ details           │       │ message      │
+└──────────────┘       └───────────────────┘       │ status       │
+                                                    └──────────────┘
+        ▲                                                       │
+        │                                                       │
+        │                                                       ▼
+┌──────────────┐       ┌──────────────┐       ┌──────────────┐
+│ categories   │1     *│ reviews      │1     *│ messages     │
+├──────────────┤──────▶├──────────────┤──────▶├──────────────┤
+│ id           │       │ id           │       │ id           │
+│ name         │       │ reservation_id │      │ reservation_id │
+└──────────────┘       │ user_id      │       │ user_id      │
+                       │ rating       │       │ content      │
+                       │ comment      │       └──────────────┘
+                        --------------
+```
+
+## 9. 今後の展望
+
+### 短期（1〜2ヶ月）
+
+UI/UX 改善: レイアウト見直し／レスポンシブ対応を実施し、操作の直感性を向上
+Zoom ID 自動生成強化: 予約時に自動でミーティングリンク（Zoom）を発行し、利便性を高める
+
+### 中期（3〜4ヶ月）
+- **決済機能導入**: Stripe 等を統合し、安全かつスムーズなチケット購入や分割支払いを実装
+- **通知・メール配信**: 予約確定、リマインダー、レビュー依頼などのメール通知を自動化し、ユーザーリテンションを強化
+- **分析・レポート機能**: ダッシュボードで予約数やレビュー評価などの統計を可視化し、講師と運営の改善を支援
+
+### 長期（5〜6ヶ月～）
+
+- **おすすめ（レコメンド）機能**: 学習履歴や興味タグに基づくレッスン推薦アルゴリズムを開発
+- **モバイルアプリ化**: React Native を用いて iOS/Android ネイティブアプリをリリースし、利用シーンを拡大
