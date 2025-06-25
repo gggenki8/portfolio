@@ -16,6 +16,8 @@
 
 https://gentle-ridge-44077-25ea9a519d8b.herokuapp.com/
 
+お試しログイン メールアドレス： test@example.com     パスワード: 000000
+
 ## 4. サービスの概要
 
 
